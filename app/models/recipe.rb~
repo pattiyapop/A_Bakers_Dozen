@@ -1,0 +1,7 @@
+#=Recipe class
+class Recipe < ActiveRecord::Base
+#==instance methods:
+#1 name
+   def name
+   end
+end
