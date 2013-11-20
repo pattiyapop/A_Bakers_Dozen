@@ -2,11 +2,12 @@
 Feature: User can manually add movie
 
 Scenario: Add a movie
-  Given I am on the RottenPotatoes home page
-  When I follow "Add new movie"
-  Then I should be on the Create New Movie page
-  When I fill in "Title" with "Men In Black"
-  And I select "PG-13" from "Rating"
+  Given I am on the ABD home page
+  When I follow "Add new recipe"
+  Then I should be on the Create New Recipe page
+  When I fill in "Name" with "Chocolate Mousse"
+  And I fill in "Picture" with "http://i.stack.imgur.com/hxgzB.jpg"
+  And I fill in "Description" with "DELICIOUS"
   And I press "Save Changes"
-  Then I should be on the RottenPotatoes home page
-  And I should see "Men In Black"
+  Then I should be on the ABD home pagee
+  And I should see "Chocolate Mousse"
