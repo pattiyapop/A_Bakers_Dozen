@@ -1,9 +1,6 @@
-CSCI 3308 Group Project 
+CSCI 3308 Group Project  : A Bakers Dozen
 
-----------------------------
-
-A Bakers Dozen
-============================
+=========================================
 
 Sierra Flynn <br/>
 Michael Brughelli <br/>
