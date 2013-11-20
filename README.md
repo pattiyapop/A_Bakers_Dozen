@@ -1,13 +1,13 @@
 CSCI 3308 Group Project 
 
-============================
-
-A Bakers Dozen
 ----------------------------
 
-Sierra Flynn
-Michael Brughelli
-Pattiya Mahapasuthanon
+A Bakers Dozen
+============================
+
+Sierra Flynn <br/>
+Michael Brughelli <br/>
+Pattiya Mahapasuthanon <br/>
 
 
 
