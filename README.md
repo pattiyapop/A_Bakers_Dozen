@@ -1,4 +1,4 @@
-CSCI 3308 Group Project  : A Bakers Dozen
+CSCI3308 Group Project: A Bakers Dozen
 =========================================
 
 Sierra Flynn <br/>
