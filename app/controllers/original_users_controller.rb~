@@ -1,15 +1,4 @@
 #just coped and pasted from hw3 for now
-#!!!!!!this is the original file I made from scratch,
-#!!!!!!not the one I made from the scaffold
-#DO NOT TREAT THIS AS THE USER CONTROLLER
-
-
-
-
-
-
-
-
 class UsersController < ApplicationController
  
 #userpage
