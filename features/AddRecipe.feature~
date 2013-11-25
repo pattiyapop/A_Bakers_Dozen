@@ -1,13 +1,27 @@
 #http://pastebin.com/CSCVp9M3
-Feature: User can manually add movie
+Feature: User adds a recipe
 
-Scenario: Add a movie
-  Given I am on the ABD home page
+Background: user has been added to the database
+
+  Given the following users exist:
+  | username                | password |
+  | test                    | test123  | 
+
+  And I am on the home page
+
+Scenario: User adds a recipe
+  Given I am logged in as "test"
+  Then I should see "Add new recipe"
   When I follow "Add new recipe"
   Then I should be on the Create New Recipe page
   When I fill in "Name" with "Chocolate Mousse"
-  When I fill in "Picture" with "http://"
-  And I select "PG-13" from "Rating"
+  And I fill in "Picture" with "http://i.stack.imgur.com/hxgzB.jpg"
+  And I fill in "Description" with "DELICIOUS"
+  And I fill in "Ingredients" with "DELICIOUS"
+  And I fill in "Instructions" with "EAT"
   And I press "Save Changes"
-  Then I should be on the RottenPotatoes home page
-  And I should see "Men In Black"
+  Then I should be on the ABD home pagee
+  And I should see "Chocolate Mousse"
+
+Scenario: Viewer can't see "Add new recipe"
+  Then I should not see "Add new recipe"
