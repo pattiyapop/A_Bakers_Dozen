@@ -1,0 +1,20 @@
+%h1 Create New Recipe
+
+= form_tag recipes_path do
+
+  = label :recipe, :title, 'Title'
+  = text_field :recipe, 'title'
+
+  = label :recipe, :description, 'Short Description'
+  = text_box :recipe, 'description'
+
+  = label :recipe, :pic, 'Picture'
+  = text_field :recipe, 'picture'
+
+  = label :recipe, :ingredients, 'Ingredients:'
+  = text_box :recipe, 'ingredients, split apart by newlines'
+
+  = label :recipe, :instructions, 'Cooking Instructions'
+  = text_box :recipe, 'instructions'
+
+  = submit_tag 'Save Changes'

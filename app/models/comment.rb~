@@ -6,7 +6,7 @@ class Comment < ActiveRecord::Base
    def initialize
      @owner = 'N/A'
      @comment = 'None' 
-     @date = '2013-11-23'
+     @date '2013-11-23'
      @rating = 0
    end
 end
