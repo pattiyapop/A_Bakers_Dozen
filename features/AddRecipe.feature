@@ -4,8 +4,8 @@ Feature: User adds a recipe
 Background: user has been added to the database
 
   Given the following users exist:
-  | username                | password |
-  | test                    | test123  | 
+  | username | name | picture  | interests |
+  | test     | Test | test.jpg | FOOD      |
 
   And I am on the home page
 
