@@ -22,3 +22,13 @@ Scenario: User adds a rating
   Then I should see "Rating with five stars"
   When I fill in "Rating" with "5"
   Then I should see "Five stars rating"
+
+Scenario: Chef adds a chef rating
+  Given I am logged in as "Michelin Chef"
+  Then I should see "Chef Rating with five stars"
+  When I fill in "Special Rating" with "4"
+  Then I should see "Four stars rating"
+
+Scenario: Viewer sees overall rating 
+  Given I am on the ABD home page
+  Then I should see "Overall Rating"

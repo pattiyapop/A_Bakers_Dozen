@@ -1,6 +1,6 @@
 Feature: User click on a friend link
 
-Background: recipes has been added to the database
+Background: user has been added to the database
 
   Given the following user exist:
    | username | name | picture  | interests |
