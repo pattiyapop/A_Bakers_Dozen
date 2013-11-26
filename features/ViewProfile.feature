@@ -8,7 +8,7 @@ Background: user has been added to the database
 
   And I am on the ABD home page
 
-Scenario: User sees their recipe page
+Scenario: User sees their profile page
   Given I am logged in as "test"
   Then I should see "Profile"
   When I follow "Profile"
