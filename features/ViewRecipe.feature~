@@ -1,0 +1,17 @@
+#http://pastebin.com/CSCVp9M3
+Feature: Viewer views a recipe
+
+Background: recipe has been added to the database
+
+  Given the following recipes exist:
+  #I left out a bunch of the variables since they're not important to test
+  | name    | description | user_id |
+  | cookies | yummy       | 1       |
+
+  And I am on the recipes page
+
+Scenario: Viwer views a recipe
+  Then I should see "cookies"
+  When I follow "cookies"
+  Then I should see "cookies"
+  And I should see "yummy"
