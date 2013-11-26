@@ -7,7 +7,8 @@ describe "recipes/show" do
       :picture => "Picture",
       :description => "MyText",
       :ingredients => "MyText",
-      :instructions => "MyText"
+      :instructions => "MyText",
+      :user_id => 1
     ))
   end
 
@@ -19,5 +20,6 @@ describe "recipes/show" do
     rendered.should match(/MyText/)
     rendered.should match(/MyText/)
     rendered.should match(/MyText/)
+    rendered.should match(/1/)
   end
 end

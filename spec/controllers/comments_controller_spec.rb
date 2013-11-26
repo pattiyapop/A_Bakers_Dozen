@@ -23,7 +23,7 @@ describe CommentsController do
   # This should return the minimal set of attributes required to create a valid
   # Comment. As you add validations to Comment, be sure to
   # adjust the attributes here as well.
-  let(:valid_attributes) { { "comment" => "MyText" } }
+  let(:valid_attributes) { { "user_id" => "1" } }
 
   # This should return the minimal set of values that should be in the session
   # in order to pass any filters (e.g. authentication) defined in
@@ -85,14 +85,14 @@ describe CommentsController do
       it "assigns a newly created but unsaved comment as @comment" do
         # Trigger the behavior that occurs when invalid params are submitted
         Comment.any_instance.stub(:save).and_return(false)
-        post :create, {:comment => { "comment" => "invalid value" }}, valid_session
+        post :create, {:comment => { "user_id" => "invalid value" }}, valid_session
         assigns(:comment).should be_a_new(Comment)
       end
 
       it "re-renders the 'new' template" do
         # Trigger the behavior that occurs when invalid params are submitted
         Comment.any_instance.stub(:save).and_return(false)
-        post :create, {:comment => { "comment" => "invalid value" }}, valid_session
+        post :create, {:comment => { "user_id" => "invalid value" }}, valid_session
         response.should render_template("new")
       end
     end
@@ -106,8 +106,8 @@ describe CommentsController do
         # specifies that the Comment created on the previous line
         # receives the :update_attributes message with whatever params are
         # submitted in the request.
-        Comment.any_instance.should_receive(:update_attributes).with({ "comment" => "MyText" })
-        put :update, {:id => comment.to_param, :comment => { "comment" => "MyText" }}, valid_session
+        Comment.any_instance.should_receive(:update_attributes).with({ "user_id" => "1" })
+        put :update, {:id => comment.to_param, :comment => { "user_id" => "1" }}, valid_session
       end
 
       it "assigns the requested comment as @comment" do
@@ -128,7 +128,7 @@ describe CommentsController do
         comment = Comment.create! valid_attributes
         # Trigger the behavior that occurs when invalid params are submitted
         Comment.any_instance.stub(:save).and_return(false)
-        put :update, {:id => comment.to_param, :comment => { "comment" => "invalid value" }}, valid_session
+        put :update, {:id => comment.to_param, :comment => { "user_id" => "invalid value" }}, valid_session
         assigns(:comment).should eq(comment)
       end
 
@@ -136,7 +136,7 @@ describe CommentsController do
         comment = Comment.create! valid_attributes
         # Trigger the behavior that occurs when invalid params are submitted
         Comment.any_instance.stub(:save).and_return(false)
-        put :update, {:id => comment.to_param, :comment => { "comment" => "invalid value" }}, valid_session
+        put :update, {:id => comment.to_param, :comment => { "user_id" => "invalid value" }}, valid_session
         response.should render_template("edit")
       end
     end

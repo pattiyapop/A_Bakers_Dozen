@@ -7,6 +7,7 @@
     <th>Description</th>
     <th>Ingredients</th>
     <th>Instructions</th>
+    <th>User</th>
     <th></th>
     <th></th>
     <th></th>
@@ -19,6 +20,7 @@
     <td><%= recipe.description %></td>
     <td><%= recipe.ingredients %></td>
     <td><%= recipe.instructions %></td>
+    <td><%= recipe.user_id %></td>
     <td><%= link_to 'Show', recipe %></td>
     <td><%= link_to 'Edit', edit_recipe_path(recipe) %></td>
     <td><%= link_to 'Destroy', recipe, confirm: 'Are you sure?', method: :delete %></td>

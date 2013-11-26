@@ -8,14 +8,16 @@ describe "recipes/index" do
         :picture => "Picture",
         :description => "MyText",
         :ingredients => "MyText",
-        :instructions => "MyText"
+        :instructions => "MyText",
+        :user_id => 1
       ),
       stub_model(Recipe,
         :name => "Name",
         :picture => "Picture",
         :description => "MyText",
         :ingredients => "MyText",
-        :instructions => "MyText"
+        :instructions => "MyText",
+        :user_id => 1
       )
     ])
   end
@@ -28,5 +30,6 @@ describe "recipes/index" do
     assert_select "tr>td", :text => "MyText".to_s, :count => 2
     assert_select "tr>td", :text => "MyText".to_s, :count => 2
     assert_select "tr>td", :text => "MyText".to_s, :count => 2
+    assert_select "tr>td", :text => 1.to_s, :count => 2
   end
 end

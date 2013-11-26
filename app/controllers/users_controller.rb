@@ -39,6 +39,7 @@ class UsersController < ApplicationController
 
   # POST /users
   # POST /users.json
+  #does NOT render a view, but rather change information
   def create
     @user = User.new(params[:user])
 
@@ -55,6 +56,7 @@ class UsersController < ApplicationController
 
   # PUT /users/1
   # PUT /users/1.json
+  #does NOT render a view, but rather change information
   def update
     @user = User.find(params[:id])
 
@@ -71,6 +73,7 @@ class UsersController < ApplicationController
 
   # DELETE /users/1
   # DELETE /users/1.json
+  #does NOT render a view, but rather change information
   def destroy
     @user = User.find(params[:id])
     @user.destroy
