@@ -1,61 +1,83 @@
-#just coped and pasted from hw3 for now
 class CommentsController < ApplicationController
-
-  def show
-    id = params[:id] # retrieve movie ID from URI route
-    @movie = Movie.find(id) # look up movie by unique ID
-    # will render app/views/movies/show.<extension> by default
-  end
-
+  # GET /comments
+  # GET /comments.json
   def index
-    sort = params[:sort] || session[:sort]
-    case sort
-    when 'title'
-      ordering,@title_header = {:order => :title}, 'hilite'
-    when 'release_date'
-      ordering,@date_header = {:order => :release_date}, 'hilite'
+    @comments = Comment.all
+
+    respond_to do |format|
+      format.html # index.html.erb
+      format.json { render json: @comments }
     end
-    @all_ratings = Movie.all_ratings
-    @selected_ratings = params[:ratings] || session[:ratings] || {}
-    
-    if @selected_ratings == {}
-      @selected_ratings = Hash[@all_ratings.map {|rating| [rating, rating]}]
-    end
-    
-    if params[:sort] != session[:sort] or params[:ratings] != session[:ratings]
-      session[:sort] = sort
-      session[:ratings] = @selected_ratings
-      redirect_to :sort => sort, :ratings => @selected_ratings and return
-    end
-    @movies = Movie.find_all_by_rating(@selected_ratings.keys, ordering)
   end
 
+  # GET /comments/1
+  # GET /comments/1.json
+  def show
+    @comment = Comment.find(params[:id])
+
+    respond_to do |format|
+      format.html # show.html.erb
+      format.json { render json: @comment }
+    end
+  end
+
+  # GET /comments/new
+  # GET /comments/new.json
   def new
-    # default: render 'new' template
+    @comment = Comment.new
+
+    respond_to do |format|
+      format.html # new.html.erb
+      format.json { render json: @comment }
+    end
   end
 
-  def create
-    @movie = Movie.create!(params[:movie])
-    flash[:notice] = "#{@movie.title} was successfully created."
-    redirect_to movies_path
-  end
-
+  # GET /comments/1/edit
   def edit
-    @movie = Movie.find params[:id]
+    @comment = Comment.find(params[:id])
   end
 
+  # POST /comments
+  # POST /comments.json
+  def create
+    @comment = Comment.new(params[:comment])
+
+    respond_to do |format|
+      if @comment.save
+        format.html { redirect_to @comment, notice: 'Comment was successfully created.' }
+        format.json { render json: @comment, status: :created, location: @comment }
+      else
+        format.html { render action: "new" }
+        format.json { render json: @comment.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
+  # PUT /comments/1
+  # PUT /comments/1.json
   def update
-    @movie = Movie.find params[:id]
-    @movie.update_attributes!(params[:movie])
-    flash[:notice] = "#{@movie.title} was successfully updated."
-    redirect_to movie_path(@movie)
+    @comment = Comment.find(params[:id])
+
+    respond_to do |format|
+      if @comment.update_attributes(params[:comment])
+        format.html { redirect_to @comment, notice: 'Comment was successfully updated.' }
+        format.json { head :ok }
+      else
+        format.html { render action: "edit" }
+        format.json { render json: @comment.errors, status: :unprocessable_entity }
+      end
+    end
   end
 
+  # DELETE /comments/1
+  # DELETE /comments/1.json
   def destroy
-    @movie = Movie.find(params[:id])
-    @movie.destroy
-    flash[:notice] = "Movie '#{@movie.title}' deleted."
-    redirect_to movies_path
-  end
+    @comment = Comment.find(params[:id])
+    @comment.destroy
 
+    respond_to do |format|
+      format.html { redirect_to comments_url }
+      format.json { head :ok }
+    end
+  end
 end

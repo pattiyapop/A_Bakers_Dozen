@@ -1,61 +1,83 @@
-#just coped and pasted from hw3 for now
 class RecipesController < ApplicationController
-
-  def show
-    id = params[:id] # retrieve movie ID from URI route
-    @movie = Movie.find(id) # look up movie by unique ID
-    # will render app/views/movies/show.<extension> by default
-  end
-
+  # GET /recipes
+  # GET /recipes.json
   def index
-    sort = params[:sort] || session[:sort]
-    case sort
-    when 'title'
-      ordering,@title_header = {:order => :title}, 'hilite'
-    when 'release_date'
-      ordering,@date_header = {:order => :release_date}, 'hilite'
+    @recipes = Recipe.all
+
+    respond_to do |format|
+      format.html # index.html.erb
+      format.json { render json: @recipes }
     end
-    @all_ratings = Movie.all_ratings
-    @selected_ratings = params[:ratings] || session[:ratings] || {}
-    
-    if @selected_ratings == {}
-      @selected_ratings = Hash[@all_ratings.map {|rating| [rating, rating]}]
-    end
-    
-    if params[:sort] != session[:sort] or params[:ratings] != session[:ratings]
-      session[:sort] = sort
-      session[:ratings] = @selected_ratings
-      redirect_to :sort => sort, :ratings => @selected_ratings and return
-    end
-    @movies = Movie.find_all_by_rating(@selected_ratings.keys, ordering)
   end
 
+  # GET /recipes/1
+  # GET /recipes/1.json
+  def show
+    @recipe = Recipe.find(params[:id])
+
+    respond_to do |format|
+      format.html # show.html.erb
+      format.json { render json: @recipe }
+    end
+  end
+
+  # GET /recipes/new
+  # GET /recipes/new.json
   def new
-    # default: render 'new' template
+    @recipe = Recipe.new
+
+    respond_to do |format|
+      format.html # new.html.erb
+      format.json { render json: @recipe }
+    end
   end
 
-  def create
-    @movie = Movie.create!(params[:movie])
-    flash[:notice] = "#{@movie.title} was successfully created."
-    redirect_to movies_path
-  end
-
+  # GET /recipes/1/edit
   def edit
-    @movie = Movie.find params[:id]
+    @recipe = Recipe.find(params[:id])
   end
 
+  # POST /recipes
+  # POST /recipes.json
+  def create
+    @recipe = Recipe.new(params[:recipe])
+
+    respond_to do |format|
+      if @recipe.save
+        format.html { redirect_to @recipe, notice: 'Recipe was successfully created.' }
+        format.json { render json: @recipe, status: :created, location: @recipe }
+      else
+        format.html { render action: "new" }
+        format.json { render json: @recipe.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
+  # PUT /recipes/1
+  # PUT /recipes/1.json
   def update
-    @movie = Movie.find params[:id]
-    @movie.update_attributes!(params[:movie])
-    flash[:notice] = "#{@movie.title} was successfully updated."
-    redirect_to movie_path(@movie)
+    @recipe = Recipe.find(params[:id])
+
+    respond_to do |format|
+      if @recipe.update_attributes(params[:recipe])
+        format.html { redirect_to @recipe, notice: 'Recipe was successfully updated.' }
+        format.json { head :ok }
+      else
+        format.html { render action: "edit" }
+        format.json { render json: @recipe.errors, status: :unprocessable_entity }
+      end
+    end
   end
 
+  # DELETE /recipes/1
+  # DELETE /recipes/1.json
   def destroy
-    @movie = Movie.find(params[:id])
-    @movie.destroy
-    flash[:notice] = "Movie '#{@movie.title}' deleted."
-    redirect_to movies_path
-  end
+    @recipe = Recipe.find(params[:id])
+    @recipe.destroy
 
+    respond_to do |format|
+      format.html { redirect_to recipes_url }
+      format.json { head :ok }
+    end
+  end
 end
