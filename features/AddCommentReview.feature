@@ -30,5 +30,7 @@ Scenario: Chef adds a chef rating
   Then I should see "Four stars rating"
 
 Scenario: Viewer sees overall rating 
-  Given I am on the ABD home page
   Then I should see "Overall Rating"
+
+Scenario: Viewer sees comments 
+  Then I should see "A Recipe Comment"
