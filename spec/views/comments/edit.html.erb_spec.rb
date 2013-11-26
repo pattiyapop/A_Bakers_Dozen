@@ -5,7 +5,7 @@ describe "comments/edit" do
     @comment = assign(:comment, stub_model(Comment,
       :user_id => 1,
       :content => "MyText",
-      :rating => ""
+      :rating => 1
     ))
   end
 
