@@ -2,7 +2,6 @@
 
 <table>
   <tr>
-    <th>Recipe</th>
     <th>User</th>
     <th>Content</th>
     <th>Rating</th>
@@ -13,7 +12,6 @@
 
 <% @comments.each do |comment| %>
   <tr>
-    <td><%= comment.recipe_id %></td>
     <td><%= comment.user_id %></td>
     <td><%= comment.content %></td>
     <td><%= comment.rating %></td>
