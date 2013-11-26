@@ -1,4 +1,4 @@
-Feature: User adds a friend
+Feature: User adds and deletes friends
 
 Background: user has been added to the database
 
