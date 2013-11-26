@@ -32,16 +32,4 @@ ActiveRecord::Schema.define(:version => 20131126203307) do
     t.datetime "updated_at"
   end
 
-<<<<<<< HEAD
-  create_table "users", :force => true do |t|
-    t.string   "username"
-    t.string   "name"
-    t.string   "picture"
-    t.text     "interests"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-=======
->>>>>>> 71f7ebaa874775ea8bf7477090d42c6af605fd2d
 end
