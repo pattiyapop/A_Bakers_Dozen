@@ -2,12 +2,8 @@
 
 <table>
   <tr>
+    <th></th>
     <th>Name</th>
-    <th>Picture</th>
-    <th>Description</th>
-    <th>Ingredients</th>
-    <th>Instructions</th>
-    <th>User</th>
     <th></th>
     <th></th>
     <th></th>
@@ -15,12 +11,12 @@
 
 <% @recipes.each do |recipe| %>
   <tr>
-    <td><%= link_to recipe.name, recipe %></td>
-    <td><%= recipe.picture %></td>
-    <td><%= recipe.description %></td>
-    <td><%= recipe.ingredients %></td>
-    <td><%= recipe.instructions %></td>
-    <td><%= recipe.user_id %></td>
+    <td><%= image_tag(recipe.picture, :size => "130x130", :padding => "20px") %></td>
+
+    <td><b><%= link_to recipe.name, recipe %></b><br>
+    Submitted by <%= User.where(:id=> recipe.user_id).name %><br><br>
+    <%= recipe.description %></td>
+
     <td><%= link_to 'Edit', edit_recipe_path(recipe) %></td>
     <td><%= link_to 'Destroy', recipe, confirm: 'Are you sure?', method: :delete %></td>
   </tr>

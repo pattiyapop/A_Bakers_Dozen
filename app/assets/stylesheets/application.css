@@ -12,12 +12,12 @@ div#main {
 }
 a {
   background: transparent;
-  color: maroon;
-  text-decoration: underline;
-  font-weight: bold;
+  color: purple;
+  text-decoration: none;/*underline;*/
+  font-weight: none;/*bold;*/
 }
 h1 {
-  color: maroon;
+  color: #996699;
   font-size: 150%;
   font-style: italic;
   display: block;
