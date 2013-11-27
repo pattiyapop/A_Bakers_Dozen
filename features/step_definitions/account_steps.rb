@@ -21,3 +21,9 @@ Given(/^I am logged in as "(.*?)"$/) do |user|
   pending # express the regexp above with the code you wish you had
   #page should have my name on it, or session should hold my username
 end
+
+
+
+
+
+

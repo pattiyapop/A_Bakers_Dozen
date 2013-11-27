@@ -3,10 +3,13 @@ Feature: User can edit their recipe
 Background: recipe has been added to the database
 
   Given the following recipes exist:
-   | name | picture  | description      | overall rating | ingredients | instruction | posted date |
-   | choc | test.jpg | a summer desert  | 5              | sugar       | 1. start    | 2013-11-20  |
+   | name    | description | user_id |
+   | cookies | yummy       | 1       |
+   
+   #| name | picture  | description      | overall rating | ingredients | instruction | posted date |
+   #| choc | test.jpg | a summer desert  | 5              | sugar       | 1. start    | 2013-11-20  |
 
-  And I am on the specific recipe page
+  And I am on the recipes page
   And I am logged in
   When I follow "choc"
   Then I should be on the edit recipe page

@@ -1,6 +1,6 @@
 Feature: User click on a particular recipe link
 
-Background: recipes has been added to the database
+Background: recipe has been added to the database
 
   Given the following recipes exist:
    | name | picture  | description      | overall rating | ingredients | instruction | posted date |
