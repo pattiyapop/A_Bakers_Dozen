@@ -17,20 +17,43 @@ a {
   font-weight: none;/*bold;*/
 }
 h1 {
-  color: #996699;
+  color: #CCCCFF/*#996699;*/
+  background-color: #CCCCFF;
   font-size: 150%;
   font-style: italic;
   display: block;
   width: 100%;
-  border-bottom: 1px solid DarkSlateGrey;
 }
 h1.title {
-  margin: 0 0 1em;
-  padding: 10px;
-  background-color: orange;
-  color: white;
-  border-bottom: 4px solid gold;
+  margin: 0 0 0em;
+  background-color: #CCCCFF;
+  padding: 15px;
+  color: #996699;
   font-size: 2em;
+  font-style: normal;
+  font-family: Comic Sans MS, Tahoma, Verdana, sans-serif;
+}
+h1.subtitle {
+  margin: 0 0 0em;
+  background-color: #CCCCFF;
+  padding: 10px;
+  padding-left: 30px;
+  padding-top: 0px;
+  color: white;
+  border-bottom: 4px solid DarkSlateGrey;
+  font-size: 1em;
+  font-style: normal;
+}
+nav {
+  color: white;
+  display: block;
+  width: 100%;
+  border-bottom: 4px solid DarkSlateGrey;
+  padding: 7px;
+  padding-left: 20px;
+  background-color: #996699;
+  color: white;
+  font-size: 1em;
   font-style: normal;
 }
 table#movies {
@@ -52,7 +75,7 @@ table#movies th.hilite {
   background-color: yellow;
 }
 #notice #warning {
-  background: rosybrown;
+  background: #CCCCFF;
   margin: 1em 0;
   padding: 4px;
 }

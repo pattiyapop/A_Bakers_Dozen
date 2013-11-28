@@ -1,15 +1,29 @@
 !!! 5
--#!!! copied and pasted from hw3
 %html
   %head
     %title A Baker's Dozen
-      %subtitle A social recipe-sharing site
     = stylesheet_link_tag 'application'
     = javascript_include_tag 'application'
     = csrf_meta_tags
 
   %body
     %h1.title A Baker's Dozen
+    %h1.subtitle     A social recipe-sharing site
+    %nav 
+      = link_to 'Home', recipes_path
+      |
+      = link_to 'My Recipes', recipes_path
+      |
+      = link_to 'My Friends', users_path
+      |
+      = link_to 'All Comments', comments_path
+      |
+      = link_to 'Sign In', users_path, :align => "right" 
+      |
+      %span 
+      = form_tag recipes_path,  :align => "right", :method => :get do
+        = text_field_tag :search_query, nil, :placeholder => "Search Recipes"
+        = submit_tag 'Go!', :align => "right", :id => 'search_submit'
     #main
       - if flash[:notice]
         #notice.message= flash[:notice]
