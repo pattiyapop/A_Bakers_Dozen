@@ -1,29 +1,13 @@
-<h1>Listing recipes</h1>
-
-<table>
-  <tr>
-    <th></th>
-    <th>Name</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
+<h1>Listing recipes</h1><br>
+<%= link_to 'New Recipe', new_recipe_path %><br><br>
 
 <% @recipes.each do |recipe| %>
-  <tr>
-    <td><%= image_tag(recipe.picture, :size => "130x130", :padding => "20px") %></td>
-
-    <td><b><%= link_to recipe.name, recipe %></b><br>
-    Submitted by <%= User.where(:id=> recipe.user_id).name %><br><br>
-    <%= recipe.description %></td>
-
-    <td><%= link_to 'Edit', edit_recipe_path(recipe) %></td>
-    <td><%= link_to 'Destroy', recipe, confirm: 'Are you sure?', method: :delete %></td>
-  <HR WIDTH="50%" SIZE="3" NOSHADE>
-  </tr>
+   <%= image_tag(recipe.picture, :size => "130x130", :hspace => '15px', :vspace => '5px', :align => "left") %>
+   <b><%= link_to recipe.name, recipe %></b><br>
+   Submitted by <%= link_to User.where(:id=> recipe.user_id).name, User.where(:id=> recipe.user_id).name %><br><br>
+   <b>Description:</b><br>
+   <%= recipe.description %><br><br>
+   <%= link_to 'Edit', edit_recipe_path(recipe) %>
+   <%= link_to 'Destroy', recipe, confirm: 'Are you sure?',method: :delete %><br>
+   <HR WIDTH="50%" align="left" SIZE="3" NOSHADE><br>
 <% end %>
-</table>
-
-<br />
-
-<%= link_to 'New Recipe', new_recipe_path %>
