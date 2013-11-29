@@ -1,10 +1,11 @@
-<h1>Listing recipes</h1>
-<%= link_to 'New Recipe', new_recipe_path %><br><br>
+<h1>All recipes</h1>
+<%= button_to 'New Recipe', new_recipe_path %><br>
+<HR WIDTH="70%" align="left" SIZE="3" NOSHADE><br>
 
 <% @recipes.each do |recipe| %>
    <%= image_tag(recipe.picture, :size => "130x130", :hspace => '15px', :vspace => '5px', :align => "left") %>
    <b><%= link_to recipe.name, recipe %></b><br>
-   Submitted by <%= link_to User.where(:id=> recipe.user_id).name, User.where(:id=> recipe.user_id).name %><br><br>
+   Submitted by <%= link_to User.where(:id => recipe.user_id).name, User.where(:id => recipe.user_id).name %><br><br>
    <b>Description:</b><br>
    <%= recipe.description %><br><br>
    <%= link_to 'Edit', edit_recipe_path(recipe) %>

@@ -14,12 +14,16 @@
 
 <p>
    <b>Ingredients:</b><br>
-   <%= @recipe.ingredients %>
+   <% @ingredients.each do |ingredient| %>
+     <%= ingredient %><br>
+   <% end %>
 </p>
 
 <p>
-  <b>Instructions:</b><br>
-  <%= @recipe.instructions %>
+  <b>Instructions:</b><p>
+   <% @instructions.each do |step| %>
+     <%= step %><p>
+   <% end %>
 </p>
 
 <%= link_to 'Edit', edit_recipe_path(@recipe) %> |

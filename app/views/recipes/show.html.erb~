@@ -14,14 +14,18 @@
 
 <p>
    <b>Ingredients:</b><br>
-   <%= @recipe.ingredients %>
+   <% @ingredients.each do |ingredient| %>
+     <%= ingredient %><br>
+   <% end %>
 </p>
 
 <p>
   <b>Instructions:</b><br>
-  <%= @recipe.instructions %>
+   <% @instructions.each do |step| %>
+     <%= step %><br>
+   <% end %>
 </p>
 
 <%= link_to 'Edit', edit_recipe_path(@recipe) %> |
-<%= link_to 'Delete', recipe, confirm: 'Are you sure?',method: :delete %> |
+<%= link_to 'Delete', @recipe, confirm: 'Are you sure?',method: :delete %> |
 <%= link_to 'Back', recipes_path %>
