@@ -8,7 +8,10 @@
 
   %body
     %h1.title A Baker's Dozen
-    %h1.subtitle     A social recipe-sharing site
+    %h1.subtitle
+      A social recipe-sharing site
+      %right
+        = link_to 'Sign In', users_path, :align => "right" 
     %nav 
       = link_to 'Home', recipes_path
       |
@@ -20,10 +23,11 @@
       |
       = link_to 'Sign In', users_path, :align => "right" 
       |
-      %span 
-      = form_tag recipes_path,  :align => "right", :method => :get do
+      %right
+        = form_tag recipes_path, :method => :get do
           = text_field_tag :search_query, nil, :placeholder => "Search Recipes"
-          = submit_tag 'Go!', :align => "right", :id => 'search_submit'
+          = submit_tag 'Go!', :id => 'search_submit'
+
     #main
       - if flash[:notice]
         #notice.message= flash[:notice]

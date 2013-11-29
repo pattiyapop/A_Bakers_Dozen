@@ -56,6 +56,11 @@ nav {
   font-size: 1em;
   font-style: normal;
 }
+right {
+  float: right;
+  text-align: right;
+  padding-right: 50px;
+}
 table#movies {
   margin: 10px;
   border-collapse: collapse;

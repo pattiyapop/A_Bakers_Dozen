@@ -1,4 +1,8 @@
 ABakersDozen::Application.routes.draw do
+  resources :comments
+
+  resources :recipes
+
   resources :users
   root :to => redirect('/users')
   get "users/new"
