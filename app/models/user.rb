@@ -13,6 +13,8 @@ class User < ActiveRecord::Base
 
 #ensure username uniqueness by downcasing:
   before_save { self.username = username.downcase }
+
+#6.3.2: password and password_confirmation attributes: these virtual attributes are implemented automatically by has_secure_password.
 end
 
 #    t.string   "username"

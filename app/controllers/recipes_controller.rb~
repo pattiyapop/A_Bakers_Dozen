@@ -16,6 +16,7 @@ class RecipesController < ApplicationController
     @recipe = Recipe.find(params[:id])
     @ingredients = @recipe.ingredients.split("\n")
     @instructions = @recipe.instructions.split("\n")
+    end
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @recipe }
