@@ -8,7 +8,7 @@ Background: viewer is on the homepage
   #| test123  | 
 
   Given I am on the ABD home page
-  When I follow "Sign Up"
+  When I follow "sign-up"
   Then I should be on the sign-up page
 
 Scenario: Sign up successfuly

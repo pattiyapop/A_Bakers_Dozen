@@ -3,16 +3,16 @@ Feature: User adds a comment and a review
 Background: user has been added to the database
 
   Given the following comments exist:
-  | content     | recipe_id | user_id | rating |
-  | "delicious" | 1         | 1       | 4      |
+  | content     | recipe_id | user_id | rating | comment |
+  | "delicious" | 1         | 1       | 4      | great   |
 
-  And I am on the specific recipe home page
+  And I am on the recipes page
 
 Scenario: User adds a comment
   Given I am logged in as "test"
   Then I should see "Add new comment"
   When I follow "Add new comment"
-  Then I should see on "Comment"
+  Then I should see "Comment"
   When I fill in "Comment" with "Very good menu!"
   And I press "Save"
   Then I should see "Very good menu!"

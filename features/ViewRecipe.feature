@@ -3,12 +3,12 @@ Feature: Viewer views a recipe
   #I left out a bunch of the variables since they're not important to test
 Background: recipe has been added to the database
   Given the following users exist:
-  | username | name |
-  | Bob      | test |
+  | username | name | password |
+  | Bob      | test | test123  |
 
   Given the following recipes exist:
-  | name    | description | user_id |
-  | cookies | yummy       | 1       |
+  | name    | description | user_id | ingredients     | instructions | 
+  | cookies | yummy       | 1       | 1 cup of sugars | 1. pouring   |
 
   Given the following comments exist:
   | content     | recipe_id | user_id | rating |
