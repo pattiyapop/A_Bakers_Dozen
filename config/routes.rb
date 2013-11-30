@@ -6,10 +6,10 @@ ABakersDozen::Application.routes.draw do
   get "recipes/new"
 
   resources :users
-  root :to => redirect('/users')
-  get "users/new"
+  #root :to => redirect('/users')
+  #get "users/new"
   
-  match '/signup', to: 'users#new' #gives us signup_path
+  match '/signup', to: 'users#new', via: 'get' #gives us signup_path
   match '/home', to: 'recipes#index'
 
   # The priority is based upon order of creation:

@@ -1,21 +1,10 @@
 <p id="notice"><%= notice %></p>
-
-<div class="row">
-  <aside class="span4">
-    <section>
-      <h1>
-        <%= gravatar_for @user %>
-        <%= @user.username %>
-      </h1>
-    </section>
-  </aside>
-</div>
-
-<p>
 <h1><%= @user.username %></h1><br>
 <h2><%= @user.name %></h2>
 
 <%= image_tag(@user.picture, :size => "250x250", :hspace => '15px', :vspace => '15px', :align => "left") %>
+
+<%= gravatar_for @user %>
 
 <p>
   <b>Interests:</b>

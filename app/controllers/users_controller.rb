@@ -44,9 +44,10 @@ class UsersController < ApplicationController
 
     respond_to do |format|
       if @user.save
+        flash[:success] = "Welcome to A Baker's Dozen!"
         format.html { redirect_to @user, notice: 'User was successfully created.' }
         format.json { render json: @user, status: :created, location: @user }
-      else
+      else #sign-up failure
         format.html { render action: "new" }
         format.json { render json: @user.errors, status: :unprocessable_entity }
       end
@@ -80,7 +81,18 @@ class UsersController < ApplicationController
       format.json { head :ok }
     end
   end
+
+  #ensure only username is in user_params
+  #***supposed to be in "create", but won't work
+  private
+    def user_params
+      params.require(:user).permit(:name, :username, :password,
+                                   :password_confirmation)
+    end
+#  end
 end
+
+
 
 #user = User.find_by(email: email)
 #current_user = user.authenticate(password): returns user or false
