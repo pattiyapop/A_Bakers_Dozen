@@ -16,6 +16,24 @@ class User < ActiveRecord::Base
 
 #ensure username uniqueness by downcasing:
   before_save { self.username = username.downcase }
+
+#to remeber a log-in:
+  before_create :create_remember_token
+
+#remember log-in class methods:
+  def User.new_remember_token
+    SecureRandom.urlsafe_base64
+  end
+
+  def User.encrypt(token)
+    Digest::SHA1.hexdigest(token.to_s)
+  end
+
+  private
+
+    def create_remember_token
+      self.remember_token = User.encrypt(User.new_remember_token)
+    end
 end
 
 #    t.string   "username"

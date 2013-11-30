@@ -11,7 +11,11 @@
     %h1.subtitle
       A social recipe-sharing site
       %right
-        = link_to 'Log-In', signup_path, :align => "right" 
+      - if signed_in?
+        = link_to 'Profile', current_user
+        = link_to 'Log-out', signout_path, :method => "delete"
+      - else
+        = link_to 'Log-in', signin_path
     %nav 
       = link_to 'Home', recipes_path
       |
