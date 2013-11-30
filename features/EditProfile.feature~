@@ -3,14 +3,16 @@ Feature: User can edit their profile
 Background: user has been added to the database
 
   Given the following users exist:
-  | username | pic | interests |
-  | test     | N/A | none      |
+  | username | name | 
+  | test     | Bob  | 
+  #|pic | interests |
+  #| N/A | none      |
   #|password | test 123|
 
   And I am on the ABD home page
   And I am logged in
   When I follow "test"
-  Then I should be on the edit profile page
+  Then I should be on the users page
 
 Scenario: Change password successfuly
   When I fill in "Current password" with "test123"
