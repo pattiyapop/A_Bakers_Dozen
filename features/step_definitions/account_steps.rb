@@ -18,9 +18,9 @@ Given /the following comments exist/ do |comments_table|
 end
 
 Given /^I am logged in as "(.*?)"$/ do |user|
-  visit signup_path
-  fill_in "name", :with => user  
-  #pending # express the regexp above with the code you wish you had
+  #visit signup_path
+  #fill_in "name", :with => user  
+  pending # express the regexp above with the code you wish you had
   #page should have my name on it, or session should hold my username
 end
 

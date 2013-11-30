@@ -18,14 +18,17 @@ Given /the following comments exist/ do |comments_table|
 end
 
 Given /^I am logged in as "(.*?)"$/ do |user|
-  pending # express the regexp above with the code you wish you had
+  visit signup_path
+  fill_in "name", :with => user  
+  #pending # express the regexp above with the code you wish you had
   #page should have my name on it, or session should hold my username
 end
 
 Then /I should see "(.*?)" in the "(.*?)" field$/ do |arg1, arg2|
-  pending # express the regexp above with the code you wish you had
+  find_field("#{arg2}").value.should == arg1
+  #pending # express the regexp above with the code you wish you had
 end
-
+ 
 Then /I should see "(.*)" before "(.*)"/ do |e1, e2|
   #  ensure that that e1 occurs before e2.
   #  page.body is the entire content of the page as a string.
@@ -33,4 +36,3 @@ Then /I should see "(.*)" before "(.*)"/ do |e1, e2|
   index2 = page.body.index(e2)
   assert index1 <= index2
 end
-
