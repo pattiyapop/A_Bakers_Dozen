@@ -12,7 +12,7 @@ Scenario: User adds a comment
   Given I am logged in as "test"
   Then I should see "Add new comment"
   When I follow "Add new comment"
-  Then I should see on "Comment"
+  Then I should see "Comment"
   When I fill in "Comment" with "Very good menu!"
   And I press "Save"
   Then I should see "Very good menu!"

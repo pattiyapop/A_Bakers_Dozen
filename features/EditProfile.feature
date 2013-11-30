@@ -10,7 +10,7 @@ Background: user has been added to the database
   #|password | test 123|
 
   And I am on the ABD home page
-  And I am logged in
+  And I am logged in as "test"
   When I follow "test"
   Then I should be on the users page
 

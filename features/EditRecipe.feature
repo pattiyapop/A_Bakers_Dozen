@@ -10,7 +10,7 @@ Background: recipe has been added to the database
    #| choc | test.jpg | a summer desert  | 5              | sugar       | 1. start    | 2013-11-20  |
 
   And I am on the recipes page
-  And I am logged in
+  And I am logged in as "test"
   When I follow "choc"
   Then I should be on the edit recipe page
 

@@ -17,9 +17,13 @@ Given /the following comments exist/ do |comments_table|
   end
 end
 
-Given(/^I am logged in as "(.*?)"$/) do |user|
+Given /^I am logged in as "(.*?)"$/ do |user|
   pending # express the regexp above with the code you wish you had
   #page should have my name on it, or session should hold my username
+end
+
+Then /I should see "(.*?)" in the "(.*?)" field$/ do |arg1, arg2|
+  pending # express the regexp above with the code you wish you had
 end
 
 Then /I should see "(.*)" before "(.*)"/ do |e1, e2|
@@ -29,8 +33,4 @@ Then /I should see "(.*)" before "(.*)"/ do |e1, e2|
   index2 = page.body.index(e2)
   assert index1 <= index2
 end
-
-
-
-
 

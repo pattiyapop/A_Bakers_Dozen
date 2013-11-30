@@ -3,8 +3,8 @@ Feature: User adds a comment and a review
 Background: user has been added to the database
 
   Given the following comments exist:
-  | owner | comment | date       | rating |
-  | test  | good!   | 2013-11-20 | 5      |
+  | content     | recipe_id | user_id | rating |
+  | "delicious" | 1         | 1       | 4      |
 
   And I am on the specific recipe home page
 

@@ -3,8 +3,8 @@ Feature: Viewer can log-in
 Background: user has been added to the database
 
   Given the following users exist:
-  | username |
-  | test     | 
+  | username | name |
+  | test     | Bob  | 
 
 # | password | test123 | 
 

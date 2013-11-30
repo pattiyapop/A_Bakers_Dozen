@@ -7,7 +7,7 @@ Background: user has been added to the database
   | test                    | test123  | 
 
   And I am on the ABD home page
-  And I am logged in
+  And I am logged in as "test"
 
 Scenario: Log-out
   When I follow "Log-out"

@@ -9,8 +9,8 @@ Background: user has been added to the database
 # | password | test123 | 
 
   And I am on the ABD home page
-  #When I follow "Log-in"
-  #Then I should be on the log-in page
+  When I follow "Log-in"
+  Then I should be on the log-in page
 
 Scenario: Log-in successfuly
   When I fill in "Username" with "test"
