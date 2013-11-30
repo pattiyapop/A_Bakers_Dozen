@@ -8,6 +8,9 @@ ABakersDozen::Application.routes.draw do
   resources :users
   root :to => redirect('/users')
   get "users/new"
+  
+  match '/signup', to: 'users#new' #gives us signup_path
+  match '/home', to: 'recipes#index'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

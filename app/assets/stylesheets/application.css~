@@ -1,3 +1,5 @@
+$lightPurple: #CCCCFF;
+$mediumPurple: #996699;
 html, body {
   margin: 0;
   padding: 0;
@@ -15,6 +17,9 @@ a {
   color: purple;
   text-decoration: none;/*underline;*/
   font-weight: none;/*bold;*/
+}
+a:hover {
+  color: #BBBBFF;
 }
 h1 {
   color: #CCCCFF/*#996699;*/
