@@ -7,8 +7,8 @@ Background: recipe has been added to the database
   | Bob      | test |
 
   Given the following recipes exist:
-  | name    | description | user_id |
-  | cookies | yummy       | 1       |
+  | name    | description | user_id | ingredients     | instructions | 
+  | cookies | yummy       | 1       | 1 cup of sugars | 1. pouring   |
 
   Given the following comments exist:
   | content     | recipe_id | user_id | rating |
