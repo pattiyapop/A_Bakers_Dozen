@@ -1,0 +1,6 @@
+class AddIndexToUsersUsername < ActiveRecord::Migration
+  def change
+    #add a index to a user's username so that 1. enforce uniqueness requirements and 2. easier to search for a user by their username
+    add_index :users, :username, unique: true
+  end
+end
