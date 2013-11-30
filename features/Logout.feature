@@ -3,8 +3,8 @@ Feature: User can log-out
 Background: user has been added to the database
 
   Given the following users exist:
-  | username                | password |
-  | test                    | test123  | 
+  | username  | name        | password |
+  | test      | Bob         | test123  | 
 
   And I am on the ABD home page
   And I am logged in as "test"

@@ -3,10 +3,8 @@ Feature: Viewer can log-in
 Background: user has been added to the database
 
   Given the following users exist:
-  | username | name | 
-  | test     | Bob  | 
-
-# | password | test123 | 
+  | username | name | password |
+  | test     | Bob  | test123  |
 
   And I am on the ABD home page
   When I follow "Log-in"

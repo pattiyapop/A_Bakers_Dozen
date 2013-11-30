@@ -2,10 +2,8 @@ Feature: Viewer can sign up / create an account
 
 Background: viewer is on the homepage
   Given the following users exist:
-  | username | name |
-  | test2    | Bob  |
-  #| password |   
-  #| test123  | 
+  | username | name | password |
+  | test2    | Bob  | test123  |
 
   Given I am on the ABD home page
   When I follow "sign-up"

@@ -3,8 +3,8 @@ Feature: User click on a friend link
 Background: user has been added to the database
 
   Given the following users exist:
-   | username | name | picture  | interests |
-   | TIM C    | Test | test.jpg | FOOD      |
+   | username | name | password | picture  | interests |
+   | TIM C    | Test | test123  | test.jpg | FOOD      |
 
   And I am on the ABD home page
 

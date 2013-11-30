@@ -3,8 +3,8 @@ Feature: User views their profile
 Background: user has been added to the database
 
   Given the following users exist:
-  | username | name |
-  | test     | Bob  |
+  | username | name | password |
+  | test     | Bob  | test123  |
  # | username | name | picture  | interests |
  # | test     | Test | test.jpg | FOOD      |
 

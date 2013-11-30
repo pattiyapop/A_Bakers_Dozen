@@ -6,7 +6,7 @@ Background: user has been added to the database
   | username | name | picture  | interests |
   | test     | Test | test.jpg | FOOD      |
 
-  And I am on the profile page
+  And I am on the users page
 
 Scenario: User adds friends
   Given I am logged in as "test"
