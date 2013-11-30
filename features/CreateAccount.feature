@@ -6,7 +6,9 @@ Background: viewer is on the homepage
   | test2    | Bob  | test123  |
 
   Given I am on the ABD home page
-  When I follow "sign-up"
+  When I follow "Log-in"
+  Then I should see "Sign up now!"
+  When I follow "Sign up now!"
   Then I should be on the sign-up page
 
 Scenario: Sign up successfuly

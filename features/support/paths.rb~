@@ -20,7 +20,7 @@ module NavigationHelpers
     when /^the recipes page$/ then '/recipes'
     when /^the Create New Recipe page$/ then '/recipes/new'
     when /^the sign-up page$/ then '/users/new'
-    when /^the Log-in page$/ then '/signup'
+    when /^the Log-in page$/ then '/Log-in'
 
     # Add more mappings here.
     # Here is an example that pulls values out of the Regexp:
