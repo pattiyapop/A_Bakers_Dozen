@@ -3,8 +3,11 @@ Feature: User can edit their profile
 Background: user has been added to the database
 
   Given the following users exist:
-  | username | password | pic | interests |
-  | test     | test123  | N/A | none      |
+  | username | 
+  | test |
+  #| pic | interests |
+  #| N/A | none      |
+  #|password | test 123|
 
   And I am on the ABD home page
   And I am logged in

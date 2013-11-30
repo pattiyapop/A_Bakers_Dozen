@@ -2,7 +2,7 @@ Feature: User click on a friend link
 
 Background: user has been added to the database
 
-  Given the following user exist:
+  Given the following users exist:
    | username | name | picture  | interests |
    | TIM C    | Test | test.jpg | FOOD      |
 

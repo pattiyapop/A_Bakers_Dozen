@@ -4,7 +4,7 @@ Background: user has been added to the database
 
   Given the following user exist:
    | username | name | picture  | interests |
-   | TIM C     | Test | test.jpg | FOOD      |
+   | TIM C    | Test | test.jpg | FOOD      |
 
   And I am on the ABD home page
 
