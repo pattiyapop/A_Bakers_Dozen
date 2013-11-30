@@ -81,3 +81,6 @@ class UsersController < ApplicationController
     end
   end
 end
+
+#user = User.find_by(email: email)
+#current_user = user.authenticate(password): returns user or false
