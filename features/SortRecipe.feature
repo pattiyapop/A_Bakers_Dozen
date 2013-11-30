@@ -3,8 +3,9 @@ Feature: Displays list of sorted recipes
 Background: recipe has been added to the database
 
   Given the following recipes exist:
-  | name    | description | user_id | Recipe Posted Date |
-  | cookies | yummy       | 1       | 2013-11-25 	 |
+  | name    | description | user_id | 
+  | cookies | yummy       | 1       |
+  #Recipe Posted Date |
 
   And I am on the ABD home page
 
