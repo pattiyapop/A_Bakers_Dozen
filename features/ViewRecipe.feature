@@ -3,8 +3,8 @@ Feature: Viewer views a recipe
   #I left out a bunch of the variables since they're not important to test
 Background: recipe has been added to the database
   Given the following users exist:
-  | username | name | password |
-  | Bob      | test | test123  |
+  | username | name | password | password_confirmation |
+  | Bob      | test | test123  | test123               |
 
   Given the following recipes exist:
   | name    | description | user_id | ingredients     | instructions | 

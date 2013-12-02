@@ -2,15 +2,19 @@ Feature: User can edit their recipe
 
 Background: recipe has been added to the database
 
+  Given the following users exist:
+  | username | name | password | password_confirmation |
+  | Bob      | test | test123  | test123               |
+  
   Given the following recipes exist:
-   | name    | description | user_id |
-   | cookies | yummy       | 1       |
+   #| name    | description | user_id | overall rating | posted date |
+   #| cookies | yummy       | 1       | 5              | 2013-11-20  |
    
-   #| name | picture  | description      | overall rating | ingredients | instruction | posted date |
-   #| choc | test.jpg | a summer desert  | 5              | sugar       | 1. start    | 2013-11-20  |
+  | name | user_id | picture  | description      | ingredients | instructions | 
+  | choc | 1       | test.jpg | a summer desert  | sugar       | 1. start     |
 
   And I am on the recipes page
-  And I am logged in as "test"
+  And I am logged in as "test" with password "test123"
   When I follow "choc"
   Then I should be on the edit recipe page
 
