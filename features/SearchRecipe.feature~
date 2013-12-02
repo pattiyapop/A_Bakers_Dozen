@@ -3,8 +3,8 @@ Feature: Displays specific recipe by search
 Background: recipe has been added to the database
 
   Given the following recipes exist:
-  | name | picture  | description      | overall rating | ingredients | instruction | posted date |
-  | test | test.jpg | a summer dessert | 5              | sugar       | 1.          | 2013-11-23  |
+   | name    | description | user_id |
+   | cookies | yummy       | 1       |
 
   And I am on the ABD home page
 

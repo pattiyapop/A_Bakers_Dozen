@@ -3,8 +3,8 @@ Feature: User can edit their profile
 Background: user has been added to the database
 
   Given the following users exist:
-  | username | name | password |
-  | test     | Bob  | test123  |
+  | username | name | password | password_confirmation |
+  | test     | Bob  | test123  | test123	       |
   #|pic | interests |
   #| N/A | none      |
   #|password | test 123|

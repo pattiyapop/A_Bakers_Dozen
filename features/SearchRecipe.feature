@@ -3,8 +3,8 @@ Feature: Displays specific recipe by search
 Background: recipe has been added to the database
 
   Given the following recipes exist:
-   | name    | description | user_id |
-   | cookies | yummy       | 1       |
+  | name    | description | user_id | ingredients     | instructions | 
+  | cookies | yummy       | 1       | 1 cup of sugars | 1. pouring   |
 
   And I am on the ABD home page
 

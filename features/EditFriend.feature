@@ -3,8 +3,8 @@ Feature: User adds and deletes friends
 Background: user has been added to the database
 
   Given the following users exist:
-  | username | name | password | picture  | interests |
-  | test     | Test | test123  | test.jpg | FOOD      |
+  | username | name | password | password_confirmation | 
+  | test     | Test | test123  | test123    	       |
 
   And I am on the users page
 
