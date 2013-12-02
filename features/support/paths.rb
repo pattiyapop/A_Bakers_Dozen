@@ -19,8 +19,12 @@ module NavigationHelpers
     when /^the users page$/ then '/users'
     when /^the recipes page$/ then '/recipes'
     when /^the Create New Recipe page$/ then '/recipes/new'
-    when /^the sign-up page$/ then '/users/new'
+    when /^the sign-up page$/ then '/signup' #'/users/new'
     when /^the Log-in page$/ then '/signin'
+    when /^the same Log-in page$/ then '/sessions' #alternate
+    when /^my profile page$/ then '/users/1'
+    when /^the "(.*?)" profile page$/i then user_path(User.find_by_username($1))
+    when /^the sign-up page again$/ then '/users' #alternate
 
     # Add more mappings here.
     # Here is an example that pulls values out of the Regexp:

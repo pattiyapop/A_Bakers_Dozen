@@ -17,16 +17,30 @@ Given /the following comments exist/ do |comments_table|
   end
 end
 
-Given /^I am logged in as "(.*?)"$/ do |user|
-  visit signin_path
-  fill_in "name", :with => user  
-  #pending # express the regexp above with the code you wish you had
-  #page should have my name on it, or session should hold my username
+Given /^I am logged in as "(.*?)" with the password "(.*?)"$/ do |user, password|
+  steps %Q{
+    When I follow "Log-in"
+    Then I should be on the Log-in page
+    When I fill in "Username" with "#{user}"
+    And I fill in "Password" with "#{password}"
+    And I press "Sign in"
+  }
 end
 
 Then /I should see "(.*?)" in the "(.*?)" field$/ do |arg1, arg2|
   find_field("#{arg2}").value.should == arg1
   #pending # express the regexp above with the code you wish you had
+end
+
+#Then /I should be on my profile page$/ do
+#u = @user.id
+#   steps %Q{
+#     Then I should be on "/users/#{u}"
+#   }
+#end
+
+When /^the "(.*?)" profile page$/i do |user|
+  user_path(User.find_by_username(user))
 end
  
 Then /I should see "(.*)" before "(.*)"/ do |e1, e2|

@@ -46,7 +46,7 @@ class UsersController < ApplicationController
       if @user.save
         sign_in @user #when they sign up, sign them in
         flash[:success] = "Welcome to A Baker's Dozen!"
-        format.html { redirect_to @user, notice: 'User was successfully created.' }
+        format.html { redirect_to @user, notice: "Welcome to A Baker's Dozen, "+@user.name+"!" }
         format.json { render json: @user, status: :created, location: @user }
       else #sign-up failure
         format.html { render action: "new" }
