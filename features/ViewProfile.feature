@@ -16,9 +16,9 @@ Scenario: User sees their profile page
   Given I am logged in as "test" with password "test123"
   Then I should see "Profile"
   When I follow "Profile"
-  Then I should be on the profile page
+  Then I should be on the "test" profile page
 
 Scenario: User sees their recipe page
   Given I am logged in as "test" with password "test123"
   When I follow "Profile"
-  Then I should see "My recipe lists"
+  Then I should see "test's Recipes"

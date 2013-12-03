@@ -1,15 +1,23 @@
 <p id="notice"><%= notice %></p>
-<h1><%= @user.username %></h1><br>
-<h2><%= @user.name %></h2>
 
-<%= image_tag(@user.picture, :size => "250x250", :hspace => '15px', :vspace => '15px', :align => "left") %>
+<div class="row">
+  <aside class="span4">
+    <section>
+      <h1>
+        <%= gravatar_for @user %>
+        <%= @user.username %>
+      </h1>
+    </section>
+  </aside>
+</div>
 
-<%= gravatar_for @user %>
+<p><HR WIDTH="50%" align="left" SIZE="3" NOSHADE><p>
 
-<p>
-  <b>Interests:</b>
-  <%= @user.interests %>
-</p>
-
+<b>Name: </b>:<%= @user.name %><br>
+<b>Interests: </b><%= @user.interests %><br>
+<b><%= @user.username %>'s Recipes: </b>
+<p><HR WIDTH="50%" align="left" SIZE="3" NOSHADE><p>
+----insert recipes here-----
+<p><HR WIDTH="50%" align="left" SIZE="3" NOSHADE><p>
 <%= link_to 'Edit', edit_user_path(@user) %> |
 <%= link_to 'Back', users_path %>

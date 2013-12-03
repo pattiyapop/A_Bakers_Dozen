@@ -11,5 +11,4 @@ class Recipe < ActiveRecord::Base
    #  @rating = 0
    #  @ingredients = ['']
    #end
-   self.ingredients = @ingredients.split('\n')
 end

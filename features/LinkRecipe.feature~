@@ -3,13 +3,12 @@ Feature: User click on a particular recipe link
 Background: recipe has been added to the database
 
   Given the following recipes exist:
-  | name    | description | user_id |
-  | cookies | yummy       | 1       |
-
-  And I am on the ABD home page
+  | name    | description | user_id | ingredients     | instructions | 
+  | cookies | yummy       | 1       | 1 cup of sugars | 1. pouring   |
 
 Scenario: User clicks on a recipe link
-  Given I am logged in as "test"
-  Then I should see "Recipe Lists"
-  When I follow "Recipe Link"
-  Then I should be on the specific Recipe page
+  Given I am logged in as "test" with password "test123"
+  And I am on the ABD home page
+  Then I should see "All Recipes"
+  When I follow "cookies"
+  Then I should be on the "cookies" page

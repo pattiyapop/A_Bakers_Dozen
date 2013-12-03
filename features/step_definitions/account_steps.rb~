@@ -17,7 +17,7 @@ Given /the following comments exist/ do |comments_table|
   end
 end
 
-Given /^I am logged in as "(.*?)" with the password "(.*?)"$/ do |user, password|
+Given /^I am logged in as "(.*?)" with( the)? password "(.*?)"$/ do |user, password|
   steps %Q{
     When I follow "Log-in"
     Then I should be on the Log-in page
@@ -38,6 +38,10 @@ end
 #     Then I should be on "/users/#{u}"
 #   }
 #end
+
+When /^the "(.*?)" profile page$/i do |user|
+  user_path(User.find_by_username(user))
+end
  
 Then /I should see "(.*)" before "(.*)"/ do |e1, e2|
   #  ensure that that e1 occurs before e2.

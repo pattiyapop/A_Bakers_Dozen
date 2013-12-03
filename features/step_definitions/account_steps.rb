@@ -17,7 +17,7 @@ Given /the following comments exist/ do |comments_table|
   end
 end
 
-Given /^I am logged in as "(.*?)" with the password "(.*?)"$/ do |user, password|
+Given /^I am logged in as "(.*?)" with( the)? password "(.*?)"$/ do |user, the, password|
   steps %Q{
     When I follow "Log-in"
     Then I should be on the Log-in page

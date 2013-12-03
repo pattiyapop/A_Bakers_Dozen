@@ -11,9 +11,10 @@ Background: user has been added to the database
   | cookies | yummy       | 1       | 1 cup of sugars | 1. pouring   |
 
   And I am on the ABD home page
+  Given I am logged in as "test" with the password "test123"
+  And I am on the recipes page
 
 Scenario: User clicks post new recipe link
-  Given I am logged in as "test" with the password "test123"
   Then I should see "Post New Recipe"
   When I follow "Post New Recipe"
   Then I should be on the Create New Recipe page

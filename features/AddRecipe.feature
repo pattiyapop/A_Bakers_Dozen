@@ -7,10 +7,11 @@ Background: user has been added to the database
   | username | name | password | password_confirmation | picture  | interests |
   | test     | Test | test123  | test123	       | test.jpg | FOOD      |
 
+  Given I am on the ABD home page
+  Given I am logged in as "test" with password "test123"
   And I am on the recipes page
 
 Scenario: User adds a recipe
-  #Given I am logged in as "test"
   Then I should see "New Recipe"
   When I follow "New Recipe"
   Then I should be on the Create New Recipe page

@@ -13,8 +13,9 @@ Background: recipe has been added to the database
   | name | user_id | picture  | description      | ingredients | instructions | 
   | choc | 1       | test.jpg | a summer desert  | sugar       | 1. start     |
 
-  And I am on the recipes page
+  And I am on the ABD home page
   And I am logged in as "test" with password "test123"
+  And I am on the recipes page
   When I follow "choc"
   Then I should be on the edit recipe page
 

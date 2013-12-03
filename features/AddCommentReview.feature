@@ -1,6 +1,10 @@
 Feature: User adds a comment and a review
 
 Background: user has been added to the database
+    Given the following recipes exist: 
+      | name | description | user_id | ingredients   | instructions |
+      | cookies | yummy    | 1      | 1 cup of sugars | 1. pouring   |
+
   Given the following users exist:
   | username | name | password | password_confirmation |
   | test2    | Bob  | test123  | test123               |
@@ -14,6 +18,7 @@ Background: user has been added to the database
 
 Scenario: User adds a comment
   Given I am logged in as "test" with the password "test123"
+  When I follow "cookies"
   Then I should see "Add new comment"
   When I follow "Add new comment"
   Then I should see "Comment"

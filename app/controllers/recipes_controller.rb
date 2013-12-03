@@ -2,8 +2,10 @@ class RecipesController < ApplicationController
   # GET /recipes
   # GET /recipes.json
   def index
-    @recipes = Recipe.all
-
+    #@recipes = Recipe.all
+    #sort and filter list of recipes for the view
+    @recipes = Recipe.find(:all, :order => 'recipes.created_at').reverse
+    #@recipes.created_at.strftime("%s").to_i)
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @recipes }
@@ -16,6 +18,7 @@ class RecipesController < ApplicationController
     @recipe = Recipe.find(params[:id])
     @ingredients = @recipe.ingredients.split("\n")
     @instructions = @recipe.instructions.split("\n")
+    @date = @recipe.created_at.strftime("%m/%d/%Y")
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @recipe }
