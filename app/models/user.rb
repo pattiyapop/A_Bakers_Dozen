@@ -1,6 +1,7 @@
 class User < ActiveRecord::Base
 #relationships:
-  has_many :comments
+  #destroys comments if user is destroyed:
+  has_many :comments, dependent: :destroy 
   has_many :recipes
 #6.3.2: password and password_confirmation attributes: these virtual attributes are implemented automatically by has_secure_password.
   has_secure_password

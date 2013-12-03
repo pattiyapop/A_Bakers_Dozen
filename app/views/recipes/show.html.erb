@@ -4,7 +4,7 @@
 <%= image_tag(@recipe.picture, :size => "250x250", :hspace => '15px', :vspace => '15px', :align => "left") %>
 
 <p>
-   Submitted by <%= link_to User.where(:id=> @recipe.user_id).name, User.where(:id=> @recipe.user_id).name %>
+   Submitted by <%= link_to @recipe.user.name, @recipe.user %>
 </p>
 
 <p>
