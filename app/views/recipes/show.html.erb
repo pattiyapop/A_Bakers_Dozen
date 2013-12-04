@@ -25,6 +25,15 @@
      <%= step %><p>
    <% end %>
 </p>
+<p><HR WIDTH="50%" align="left" SIZE="3" NOSHADE><p>
+<b>Comments and Ratings:</b><p>
+<% @comments.each do |comment| %>
+  Posted by <b><%= comment.user_id.username %></b> on <%= comment.created_at %>: <br>
+  <b>Rating:</b> <%= comment.rating %><p>
+  <%= comment.content %>
+  <p><HR WIDTH="50%" align="left" SIZE="1" NOSHADE><p>
+<% end %>
+<p><HR WIDTH="80%" align="left" SIZE="3" NOSHADE><p>
 
 <%= link_to 'Edit', edit_recipe_path(@recipe) %> |
 <%= link_to 'Delete', @recipe, confirm: 'Are you sure?',method: :delete %> |

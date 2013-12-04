@@ -4,7 +4,7 @@
 <%= image_tag(@recipe.picture, :size => "250x250", :hspace => '15px', :vspace => '15px', :align => "left") %>
 
 <p>
-   Submitted by <%= link_to recipe.user.name, recipe.user %>
+   Submitted by <%= link_to @recipe.user.name, @recipe.user %>
 </p>
 
 <p>
@@ -25,6 +25,11 @@
      <%= step %><p>
    <% end %>
 </p>
+<p><HR WIDTH="50%" align="left" SIZE="3" NOSHADE><p>
+<b>Comments and Ratings:</b><p>
+<% @recipe.rating_id.each do |comment| %>
+<% end %>
+<p><HR WIDTH="50%" align="left" SIZE="3" NOSHADE><p>
 
 <%= link_to 'Edit', edit_recipe_path(@recipe) %> |
 <%= link_to 'Delete', @recipe, confirm: 'Are you sure?',method: :delete %> |
