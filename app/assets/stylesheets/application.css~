@@ -1,5 +1,6 @@
 /*$lightPurple: #CCCCFF;*/
 /*$mediumPurple: #996699;*/
+@import "bootstrap";
 html, body {
   margin: 0;
   padding: 0;
