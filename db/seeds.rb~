@@ -59,7 +59,40 @@ Pinch of coarse salt
 ', 
 :user_id => 3}
 
-recipes = [applepie, chocmousse]
+stirfry={
+:name => 'Tofu-Vegetable Stir-Fry', 
+:picture => 'http://img.foodnetwork.com/FOOD/2011/11/14/FNM_120111-WN-Dinners-046_s4x3_lg.jpg', 
+:description => 'The perfectly simple vegetarian stir-fry loaded with snow peas, tofu and mushrooms with hints of chile, garlic, and ginger', 
+:ingredients => '
+1 cup white or jasmine rice
+3 tablespoons low-sodium soy sauce
+3 tablespoons hoisin sauce
+2 tablespoons balsamic vinegar
+1 tablespoon Asian chile sauce (such as Sriracha)
+2 teaspoons cornstarch
+2 tablespoons sesame oil
+4 scallions, sliced (white and green parts separated)
+2 cloves garlic, minced
+1 1-inch piece ginger, peeled and finely chopped
+4 ounces shiitake mushrooms, stemmed and chopped
+4 ounces snow peas
+1 14-ounce package soft tofu, drained and cut into 1-inch cubes
+', 
+:instructions => '
+Cook the rice as the label directs. Meanwhile, whisk the soy sauce, hoisin sauce, vinegar, chile sauce, cornstarch and 1 cup water in a small bowl until smooth; set aside.
+
+Heat the sesame oil in a wok or large skillet over medium-high heat. Add the scallion whites, garlic and ginger and stir-fry 30 seconds. Add the mushrooms and stir-fry until golden brown and tender, about 3 minutes. Add the snow peas and stir-fry 30 more seconds.
+
+Whisk the reserved soy sauce mixture and add it to the wok. Bring to a simmer, then add the tofu. Cook, stirring occasionally, until the sauce is thick, about 2 minutes. Sprinkle with the scallion greens.
+
+Fluff the rice with a fork and divide among bowls. Top with the stir-fry and sauce.
+
+Read more at: http://www.foodnetwork.com/recipes/food-network-kitchens/tofu-vegetable-stir-fry-recipe/index.html?oc=linkback
+', 
+:user_id => 2
+}
+
+recipes = [applepie, chocmousse, stirfry]
 
 recipes.each do |recipe|
   Recipe.create!(recipe)

@@ -1,5 +1,5 @@
-$lightPurple: #CCCCFF;
-$mediumPurple: #996699;
+/*$lightPurple: #CCCCFF;*/
+/*$mediumPurple: #996699;*/
 html, body {
   margin: 0;
   padding: 0;
