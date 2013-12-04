@@ -1,0 +1,78 @@
+USER STORIES
+______________________________________________________________________
+
+1.) *Logout*
+    As a logged in user
+    When I click logout
+    I should see the home page
+
+2.) *Accounts*
+    As a website viewer,
+    I want to be able to enter a username and password
+    So that I can have an account with ABD.
+
+3.) *Login*
+    As a user
+    When I click 'Login' from the home page
+    I should see the Login view(page)
+
+4.) *View own profile*
+    As a logged in user
+    When I click 'profile' from the home page
+    I should be taken to the 'your profile page' view
+
+5.) *Add a recipe image*
+    As a user
+    I want to be able to add an image to a recipe
+    So that people can see how delicious it looks.
+
+6.) *Sort recipe by date*
+    As a viewer,
+    I want to be able to sort recipes by ascending date
+    So that I can see the most recently added recipes on the homepage first.
+
+7.) *Post new recipe link*
+    As a logged in user
+    When I click 'post new recipe' from either the home page or my profile page
+    I should be taken to the 'Create new recipe' page(view)
+
+8.) *Recipe links*
+    As a user
+    When I click on a recipe link
+    It takes me to that recipe's specific page
+
+9.) *View my recipes*
+    As a user
+    I want to be able to see my submitted recipes on my profile page
+    So that I can look through them
+
+10.) *Create a recipe*
+     As a Baker's Dozen logged-in user,
+     I want to be able to create recipes by filling the form.
+     So that I can have lists of my recipes and share with others.
+
+11.) *Edit a recipe*
+     As the owner of a recipe
+     I want to be able to edit my submitted recipes
+     So that I can keep them updated.
+
+12.) *Edit a profile*
+     As a user
+     I want to be able to edit my profile
+     So that I can keep it updated.
+
+13.) *Create account link*
+     As a new user
+     When I click 'create account' on the home page
+     It should take me to the create account view(page)
+
+14.) *Delete friend*
+     As a logged in user
+     When I click 'delete friend' on the 'your friends' view
+     It should delete that friend from my 'your friends' list(page/view)
+
+15.) *Add a friend*
+     As a user
+     I want to be able to click "Add Friend" on a user's profile page
+     So that I can have a friend. Yay!
+     
