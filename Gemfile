@@ -2,6 +2,10 @@ source 'http://rubygems.org'
 
 gem 'rails', '3.1.0'
 
+#added for pagination:
+gem 'will_paginate', '3.0.4'
+gem 'bootstrap-will_paginate', '0.0.9'
+
 #added for CSS:
 gem 'bootstrap-sass', '2.3.2.0'
 

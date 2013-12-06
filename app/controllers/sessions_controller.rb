@@ -11,10 +11,7 @@ class SessionsController < ApplicationController
       flash[:notice] = 'Welcome, '+user.name+'!'
     else
       flash.now[:warning] = 'Invalid username/password combination'
-      #redirect_to signin_path
       render 'new'
-      #flash[:warning] = 'Invalid username/password combination'
-      #render 'new'
     end
   end
 

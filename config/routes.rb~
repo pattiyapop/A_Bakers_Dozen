@@ -10,7 +10,6 @@ ABakersDozen::Application.routes.draw do
   #get "users/new"
   
   match '/signup', to: 'users#new', via: 'get' #gives us signup_path
-  match '/signup', to: 'users#new'
   match '/home', to: 'recipes#index'
 
   #signin/signout:

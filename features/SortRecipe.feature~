@@ -13,8 +13,9 @@ Background: recipe has been added to the database
 
   And I am on the ABD home page
 
-Scenario: Sort list of recipes in ascending order
-  When I follow "Recipe Posted Date"
-  Then I should see "2013-11-25" before "2013-11-20"
-
+Scenario: List of recipes is sorted
+  Then I should see "cake" before "cookies"
+  And I should see "cookies" before "pizza"
+  And I should see "pizza" before "stir-fry"
+  And I should see "stir-fry" before "pasta"
 

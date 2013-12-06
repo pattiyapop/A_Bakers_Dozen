@@ -26,13 +26,31 @@
    <% end %>
 </p>
 <p><HR WIDTH="50%" align="left" SIZE="3" NOSHADE><p>
+
 <b>Comments and Ratings:</b><p>
-<% @comments.each do |comment| %>
-  Posted by <b><%= comment.user_id.username %></b> on <%= comment.created_at %>: <br>
-  <b>Rating:</b> <%= comment.rating %><p>
-  <%= comment.content %>
+  <% if signed_in? %>
+    <%= link_to 'Add New Comment/Rating', new_comment_path(:recipe => @recipe) %> <p>
+  <% else %>
+    Please <%= link_to 'sign-in', signin_path %> to comment.
+  <% end %>
+<p>
+
+    <% if @recipe.comments.any? %>
+      <%= render @comments %>
+      <%= will_paginate @comments %>
+    <% end %>
+
+<% 
+=begin %>
+  <% @comments.each do |comment| %>
+    Posted by <b><%#= comment.user_id.username %></b> on <%= comment.created_at %>: <br>
+    <b>Rating:</b> <%= comment.rating %><p>
+    <%= comment.content %>
   <p><HR WIDTH="50%" align="left" SIZE="1" NOSHADE><p>
-<% end %>
+  <% end %>
+<% 
+=end %>
+
 <p><HR WIDTH="80%" align="left" SIZE="3" NOSHADE><p>
 
 <%= link_to 'Edit', edit_recipe_path(@recipe) %> |

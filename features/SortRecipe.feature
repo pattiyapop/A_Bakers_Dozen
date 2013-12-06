@@ -1,6 +1,9 @@
 Feature: Displays list of sorted recipes
 
 Background: recipe has been added to the database
+  Given the following users exist:
+  | username | name | password | password_confirmation |
+  | Bob      | test | test123  | test123               |
 
   Given the following recipes exist:
   | name     | description | user_id | created_at |

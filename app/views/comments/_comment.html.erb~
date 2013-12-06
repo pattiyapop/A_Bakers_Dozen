@@ -1,0 +1,4 @@
+Posted by <b><%= link_to comment.user.name, comment.user %></b> on <%= comment.created_at %>: <br>
+<b>Rating:</b> <%= comment.rating %><p>
+<%= comment.content %>
+<p><HR WIDTH="50%" align="left" SIZE="1" NOSHADE><p>

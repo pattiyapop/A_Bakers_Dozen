@@ -1,4 +1,7 @@
 class CommentsController < ApplicationController
+#*** really only need pages for create and destroy. also index.
+  before_filter :signed_in_user, only: [:create, :destroy]
+
   # GET /comments
   # GET /comments.json
   def index
@@ -25,7 +28,6 @@ class CommentsController < ApplicationController
   # GET /comments/new.json
   def new
     @comment = Comment.new
-
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @comment }
@@ -40,18 +42,27 @@ class CommentsController < ApplicationController
   # POST /comments
   # POST /comments.json
   def create
-    @comment = Comment.new(params[:comment])
+    if params[:recipe] != nil
+      @recipe = Recipe.where(:id => params[:recipe])
+    end
+    #@comment = Comment.new(params[:comment], :recipe_id => params[:recipe], :user_id => current_user)
+    #get user and recipe from session or params
+    @comment = current_user.comments.build(comments_params)
+    @comment.recipe_id = params[:recipe_id]
+    #@comment.user_id = current_user
 
     respond_to do |format|
       if @comment.save
-        format.html { redirect_to @comment, notice: 'Comment was successfully created.' }
-        format.json { render json: @comment, status: :created, location: @comment }
+        format.html { redirect_to @recipe, notice: 'Comment was successfully created.' }
+        format.json { render json: @recipe, status: :created, location: @comment }
       else
         format.html { render action: "new" }
         format.json { render json: @comment.errors, status: :unprocessable_entity }
       end
     end
   end
+
+
 
   # PUT /comments/1
   # PUT /comments/1.json
@@ -80,4 +91,10 @@ class CommentsController < ApplicationController
       format.json { head :ok }
     end
   end
+
+  private
+
+    def comments_params
+      params.require(:comment).permit(:content)
+    end
 end

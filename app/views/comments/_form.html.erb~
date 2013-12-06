@@ -20,6 +20,6 @@
     <%= f.number_field :rating %>
   </div>
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit, :user_id => current_user %>
   </div>
 <% end %>

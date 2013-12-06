@@ -20,9 +20,11 @@ class RecipesController < ApplicationController
     @instructions = @recipe.instructions.split("\n")
     @date = @recipe.created_at.strftime("%m/%d/%Y")
     #find all comments associated with recipe
-    @comments = @recipe.comments 
+    @comments = @recipe.comments.paginate(page: params[:page])
     #@comments = Comment.find(:all, :recipe_id => @recipe.id)
     #@comments = @recipe.comments.paginate(page: params[:page])
+    #    Micropost.where("user_id = ?", id)
+
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @recipe }

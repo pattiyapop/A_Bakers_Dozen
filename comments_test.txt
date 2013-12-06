@@ -1,0 +1,549 @@
+diff --git a/app/controllers/comments_controller.rb b/app/controllers/comments_controller.rb
+index 50b76e4..d03b5e2 100644
+--- a/app/controllers/comments_controller.rb
++++ b/app/controllers/comments_controller.rb
+@@ -1,4 +1,7 @@
+ class CommentsController < ApplicationController
++#*** really only need pages for create and destroy.
++  before_filter :signed_in_user
++
+   # GET /comments
+   # GET /comments.json
+   def index
+@@ -25,7 +28,6 @@ class CommentsController < ApplicationController
+   # GET /comments/new.json
+   def new
+     @comment = Comment.new
+-
+     respond_to do |format|
+       format.html # new.html.erb
+       format.json { render json: @comment }
+@@ -40,7 +42,13 @@ class CommentsController < ApplicationController
+   # POST /comments
+   # POST /comments.json
+   def create
+-    @comment = Comment.new(params[:comment])
++    if params[:recipe] != nil
++      @recipe = Recipe.where(:id => params[:recipe])
++    end
++    @comment = Comment.new(params[:comment], :recipe_id => params[:recipe], :user_id => current_user)
++    #get user and recipe from session or params
++    @comment.recipe_id = params[:recipe_id]
++    @comment.user_id = current_user
+ 
+     respond_to do |format|
+       if @comment.save
+diff --git a/app/controllers/comments_controller.rb~ b/app/controllers/comments_controller.rb~
+index e69de29..c7a8126 100644
+--- a/app/controllers/comments_controller.rb~
++++ b/app/controllers/comments_controller.rb~
+@@ -0,0 +1,92 @@
++class CommentsController < ApplicationController
++#*** really only need pages for create and destroy.
++  before_filter :signed_in_user
++
++  # GET /comments
++  # GET /comments.json
++  def index
++    @comments = Comment.all
++
++    respond_to do |format|
++      format.html # index.html.erb
++      format.json { render json: @comments }
++    end
++  end
++
++  # GET /comments/1
++  # GET /comments/1.json
++  def show
++    @comment = Comment.find(params[:id])
++
++    respond_to do |format|
++      format.html # show.html.erb
++      format.json { render json: @comment }
++    end
++  end
++
++  # GET /comments/new
++  # GET /comments/new.json
++  def new
++    @comment = Comment.new
++    respond_to do |format|
++      format.html # new.html.erb
++      format.json { render json: @comment }
++    end
++  end
++
++  # GET /comments/1/edit
++  def edit
++    @comment = Comment.find(params[:id])
++  end
++
++  # POST /comments
++  # POST /comments.json
++  def create
++    if params[:recipe] != nil
++      @recipe = Recipe.where(:id => params[:recipe])
++    end
++    @comment = Comment.new(params[:comment], :recipe_id => params[:recipe], :user_id => current_user)
++    debugger
++    #get user and recipe from session or params
++    #@comment.recipe_id = params[:recipe_id]
++    #@comment.user_id = current_user
++
++    respond_to do |format|
++      if @comment.save
++        format.html { redirect_to @comment, notice: 'Comment was successfully created.' }
++        format.json { render json: @comment, status: :created, location: @comment }
++      else
++        format.html { render action: "new" }
++        format.json { render json: @comment.errors, status: :unprocessable_entity }
++      end
++    end
++  end
++
++  # PUT /comments/1
++  # PUT /comments/1.json
++  def update
++    @comment = Comment.find(params[:id])
++
++    respond_to do |format|
++      if @comment.update_attributes(params[:comment])
++        format.html { redirect_to @comment, notice: 'Comment was successfully updated.' }
++        format.json { head :ok }
++      else
++        format.html { render action: "edit" }
++        format.json { render json: @comment.errors, status: :unprocessable_entity }
++      end
++    end
++  end
++
++  # DELETE /comments/1
++  # DELETE /comments/1.json
++  def destroy
++    @comment = Comment.find(params[:id])
++    @comment.destroy
++
++    respond_to do |format|
++      format.html { redirect_to comments_url }
++      format.json { head :ok }
++    end
++  end
++end
+diff --git a/app/controllers/recipes_controller.rb b/app/controllers/recipes_controller.rb
+index 37f941c..7a68503 100644
+--- a/app/controllers/recipes_controller.rb
++++ b/app/controllers/recipes_controller.rb
+@@ -23,6 +23,7 @@ class RecipesController < ApplicationController
+     @comments = @recipe.comments 
+     #@comments = Comment.find(:all, :recipe_id => @recipe.id)
+     #@comments = @recipe.comments.paginate(page: params[:page])
++    #    Micropost.where("user_id = ?", id)
+     respond_to do |format|
+       format.html # show.html.erb
+       format.json { render json: @recipe }
+diff --git a/app/controllers/recipes_controller.rb~ b/app/controllers/recipes_controller.rb~
+index 5754a27..37f941c 100644
+--- a/app/controllers/recipes_controller.rb~
++++ b/app/controllers/recipes_controller.rb~
+@@ -20,7 +20,9 @@ class RecipesController < ApplicationController
+     @instructions = @recipe.instructions.split("\n")
+     @date = @recipe.created_at.strftime("%m/%d/%Y")
+     #find all comments associated with recipe
+-    @comments = @recipe.comments #Comment.find(:all, :recipe_id => @recipe.id)
++    @comments = @recipe.comments 
++    #@comments = Comment.find(:all, :recipe_id => @recipe.id)
++    #@comments = @recipe.comments.paginate(page: params[:page])
+     respond_to do |format|
+       format.html # show.html.erb
+       format.json { render json: @recipe }
+diff --git a/app/controllers/sessions_controller.rb b/app/controllers/sessions_controller.rb
+index 0fbce4e..7d41aa9 100644
+--- a/app/controllers/sessions_controller.rb
++++ b/app/controllers/sessions_controller.rb
+@@ -11,10 +11,7 @@ class SessionsController < ApplicationController
+       flash[:notice] = 'Welcome, '+user.name+'!'
+     else
+       flash.now[:warning] = 'Invalid username/password combination'
+-      #redirect_to signin_path
+       render 'new'
+-      #flash[:warning] = 'Invalid username/password combination'
+-      #render 'new'
+     end
+   end
+ 
+diff --git a/app/controllers/sessions_controller.rb~ b/app/controllers/sessions_controller.rb~
+index 27348db..0fbce4e 100644
+--- a/app/controllers/sessions_controller.rb~
++++ b/app/controllers/sessions_controller.rb~
+@@ -7,9 +7,8 @@ class SessionsController < ApplicationController
+     if user && user.authenticate(params[:session][:password])
+       # Sign the user in and redirect to the user's show page.
+       sign_in user
+-      #redirect_to user
+-      flash.now[:notice] = 'Welcome, '+user.name+'!'
+       redirect_to user
++      flash[:notice] = 'Welcome, '+user.name+'!'
+     else
+       flash.now[:warning] = 'Invalid username/password combination'
+       #redirect_to signin_path
+diff --git a/app/helpers/sessions_helper.rb b/app/helpers/sessions_helper.rb
+index 7b03c5e..09462cf 100644
+--- a/app/helpers/sessions_helper.rb
++++ b/app/helpers/sessions_helper.rb
+@@ -30,4 +30,16 @@ module SessionsHelper
+     self.current_user = nil
+     cookies.delete(:remember_token)
+   end
++
++#needed for linking users and comments
++  def current_user?(user)
++    user == current_user
++  end
++
++  def signed_in_user
++    unless signed_in?
++      store_location
++      redirect_to signin_url, notice: "Please sign in."
++    end
++  end
+ end
+diff --git a/app/helpers/sessions_helper.rb~ b/app/helpers/sessions_helper.rb~
+index b7655cf..7b03c5e 100644
+--- a/app/helpers/sessions_helper.rb~
++++ b/app/helpers/sessions_helper.rb~
+@@ -24,4 +24,10 @@ module SessionsHelper
+   def signed_in?
+     !current_user.nil?
+   end
++
++#sign out: we set the current user to nil and use the delete method on cookies to remove the remember token from the session
++  def sign_out
++    self.current_user = nil
++    cookies.delete(:remember_token)
++  end
+ end
+diff --git a/app/views/comments/_form.html.erb b/app/views/comments/_form.html.erb
+index 55a7e82..febb69f 100644
+--- a/app/views/comments/_form.html.erb
++++ b/app/views/comments/_form.html.erb
+@@ -10,11 +10,7 @@
+       </ul>
+     </div>
+   <% end %>
+-
+-  <div class="field">
+-    <%= f.label :user_id %><br />
+-    <%= f.number_field :user_id %>
+-  </div>
++  <%# deleted user_id field, grab from session %>
+   <div class="field">
+     <%= f.label :content %><br />
+     <%= f.text_area :content %>
+diff --git a/app/views/comments/new.html.erb b/app/views/comments/new.html.erb
+index 07a754a..6cbde5a 100644
+--- a/app/views/comments/new.html.erb
++++ b/app/views/comments/new.html.erb
+@@ -1,4 +1,4 @@
+-<h1>New comment</h1>
++<h1>Rate and Comment on <%= @recipe %>!</h1><p>
+ 
+ <%= render 'form' %>
+ 
+diff --git a/app/views/layouts/application.html.erb b/app/views/layouts/application.html.erb
+deleted file mode 100644
+index 5ab1c2d..0000000
+--- a/app/views/layouts/application.html.erb
++++ /dev/null
+@@ -1,14 +0,0 @@
+-<!DOCTYPE html>
+-<html>
+-<head>
+-  <title>ABakersDozen</title>
+-  <%= stylesheet_link_tag    "application" %>
+-  <%= javascript_include_tag "application" %>
+-  <%= csrf_meta_tags %>
+-</head>
+-<body>
+-
+-<%= yield %>
+-
+-</body>
+-</html>
+diff --git a/app/views/recipes/show.html.erb b/app/views/recipes/show.html.erb
+index 3679ab0..629fb3a 100644
+--- a/app/views/recipes/show.html.erb
++++ b/app/views/recipes/show.html.erb
+@@ -26,13 +26,21 @@
+    <% end %>
+ </p>
+ <p><HR WIDTH="50%" align="left" SIZE="3" NOSHADE><p>
++
+ <b>Comments and Ratings:</b><p>
+-<% @comments.each do |comment| %>
+-  Posted by <b><%= comment.user_id.username %></b> on <%= comment.created_at %>: <br>
+-  <b>Rating:</b> <%= comment.rating %><p>
+-  <%= comment.content %>
++  <% if signed_in? %>
++    <%= link_to 'Add New Comment/Rating', new_comment_path(:recipe => @recipe) %> <p>
++  <% else %>
++    Please <%= link_to 'sign-in', signin_path %> to comment.
++  <% end %>
++
++  <% @comments.each do |comment| %>
++    Posted by <b><%#= comment.user_id.username %></b> on <%= comment.created_at %>: <br>
++    <b>Rating:</b> <%= comment.rating %><p>
++    <%= comment.content %>
+   <p><HR WIDTH="50%" align="left" SIZE="1" NOSHADE><p>
+-<% end %>
++  <% end %>
++
+ <p><HR WIDTH="80%" align="left" SIZE="3" NOSHADE><p>
+ 
+ <%= link_to 'Edit', edit_recipe_path(@recipe) %> |
+diff --git a/app/views/recipes/show.html.erb~ b/app/views/recipes/show.html.erb~
+index 70b6873..a32b423 100644
+--- a/app/views/recipes/show.html.erb~
++++ b/app/views/recipes/show.html.erb~
+@@ -26,10 +26,47 @@
+    <% end %>
+ </p>
+ <p><HR WIDTH="50%" align="left" SIZE="3" NOSHADE><p>
++
+ <b>Comments and Ratings:</b><p>
+-<% @recipe.rating_id.each do |comment| %>
++  <% if signed_in? %>
++    <%#= link_to 'Add New Comment/Rating', new_comment_path(:recipe => @recipe) %> <p>
++  <%= form_for(@comment) do |f| %>
++  <% if @comment.errors.any? %>
++    <div id="error_explanation">
++      <h2><%= pluralize(@comment.errors.count, "error") %> prohibited this comment from being saved:</h2>
++
++      <ul>
++      <% @comment.errors.full_messages.each do |msg| %>
++        <li><%= msg %></li>
++      <% end %>
++      </ul>
++    </div>
++  <% end %>
++  <%# deleted user_id field, grab from session %>
++  <div class="field">
++    <%= f.label :content %><br />
++    <%= f.text_area :content %>
++  </div>
++  <div class="field">
++    <%= f.label :rating %><br />
++    <%= f.number_field :rating %>
++  </div>
++  <div class="actions">
++    <%= f.submit %>
++  </div>
+ <% end %>
+-<p><HR WIDTH="50%" align="left" SIZE="3" NOSHADE><p>
++  <% else %>
++    Please <%= link_to 'sign-in', signin_path %> to comment.
++  <% end %>
++
++  <% @comments.each do |comment| %>
++    Posted by <b><%#= comment.user_id.username %></b> on <%= comment.created_at %>: <br>
++    <b>Rating:</b> <%= comment.rating %><p>
++    <%= comment.content %>
++  <p><HR WIDTH="50%" align="left" SIZE="1" NOSHADE><p>
++  <% end %>
++
++<p><HR WIDTH="80%" align="left" SIZE="3" NOSHADE><p>
+ 
+ <%= link_to 'Edit', edit_recipe_path(@recipe) %> |
+ <%= link_to 'Delete', @recipe, confirm: 'Are you sure?',method: :delete %> |
+diff --git a/config/routes.rb b/config/routes.rb
+index 53ad431..3042ec9 100644
+--- a/config/routes.rb
++++ b/config/routes.rb
+@@ -1,4 +1,6 @@
+ ABakersDozen::Application.routes.draw do
++  root :to => 'recipes#index'
++
+   resources :comments
+ 
+   resources :recipes
+@@ -17,60 +19,6 @@ ABakersDozen::Application.routes.draw do
+   match '/signin',  to: 'sessions#new',         via: 'get'
+   match '/signout', to: 'sessions#destroy',     via: 'delete'
+ 
+-  # The priority is based upon order of creation:
+-  # first created -> highest priority.
+-
+-  # Sample of regular route:
+-  #   match 'products/:id' => 'catalog#view'
+-  # Keep in mind you can assign values other than :controller and :action
+-
+-  # Sample of named route:
+-  #   match 'products/:id/purchase' => 'catalog#purchase', :as => :purchase
+-  # This route can be invoked with purchase_url(:id => product.id)
+-
+-  # Sample resource route (maps HTTP verbs to controller actions automatically):
+-  #   resources :products
+-
+-  # Sample resource route with options:
+-  #   resources :products do
+-  #     member do
+-  #       get 'short'
+-  #       post 'toggle'
+-  #     end
+-  #
+-  #     collection do
+-  #       get 'sold'
+-  #     end
+-  #   end
+-
+-  # Sample resource route with sub-resources:
+-  #   resources :products do
+-  #     resources :comments, :sales
+-  #     resource :seller
+-  #   end
+-
+-  # Sample resource route with more complex sub-resources
+-  #   resources :products do
+-  #     resources :comments
+-  #     resources :sales do
+-  #       get 'recent', :on => :collection
+-  #     end
+-  #   end
+-
+-  # Sample resource route within a namespace:
+-  #   namespace :admin do
+-  #     # Directs /admin/products/* to Admin::ProductsController
+-  #     # (app/controllers/admin/products_controller.rb)
+-  #     resources :products
+-  #   end
+-
+-  # You can have the root of your site routed with "root"
+-  # just remember to delete public/index.html.
+-  # root :to => 'welcome#index'
+-
+-  # See how all your routes lay out with "rake routes"
+-
+-  # This is a legacy wild controller route that's not recommended for RESTful applications.
+-  # Note: This route will make all actions in every controller accessible via GET requests.
+-  # match ':controller(/:action(/:id(.:format)))'
++  #comments don't need a 'new' or 'edit' method:
++  resources :comments, only: [:create, :destroy]
+ end
+diff --git a/config/routes.rb~ b/config/routes.rb~
+index 477b590..53ad431 100644
+--- a/config/routes.rb~
++++ b/config/routes.rb~
+@@ -10,7 +10,6 @@ ABakersDozen::Application.routes.draw do
+   #get "users/new"
+   
+   match '/signup', to: 'users#new', via: 'get' #gives us signup_path
+-  match '/signup', to: 'users#new'
+   match '/home', to: 'recipes#index'
+ 
+   #signin/signout:
+diff --git a/db/migrate/20131126171156_create_comments.rb~ b/db/migrate/20131126171156_create_comments.rb~
+deleted file mode 100644
+index 2db87bd..0000000
+--- a/db/migrate/20131126171156_create_comments.rb~
++++ /dev/null
+@@ -1,10 +0,0 @@
+-class CreateComments < ActiveRecord::Migration
+-  def change
+-    create_table :comments do |t|
+-      t.text :comment
+-      t.int :rating
+-
+-      t.timestamps
+-    end
+-  end
+-end
+diff --git a/features/LinkRecipe.feature b/features/LinkRecipe.feature
+index 41067bd..1b1d09b 100644
+--- a/features/LinkRecipe.feature
++++ b/features/LinkRecipe.feature
+@@ -1,6 +1,9 @@
+ Feature: User click on a particular recipe link
+ 
+ Background: recipe has been added to the database
++  Given the following users exist:
++  | username | name | password | password_confirmation |
++  | Bob      | test | test123  | test123               |
+ 
+   Given the following recipes exist:
+   | name    | description | user_id | ingredients     | instructions | 
+diff --git a/features/LinkRecipe.feature~ b/features/LinkRecipe.feature~
+index c29b78f..41067bd 100644
+--- a/features/LinkRecipe.feature~
++++ b/features/LinkRecipe.feature~
+@@ -5,10 +5,10 @@ Background: recipe has been added to the database
+   Given the following recipes exist:
+   | name    | description | user_id | ingredients     | instructions | 
+   | cookies | yummy       | 1       | 1 cup of sugars | 1. pouring   |
++#  Given I am logged in as "test" with password "test123"
++  And I am on the ABD home page
+ 
+ Scenario: User clicks on a recipe link
+-  Given I am logged in as "test" with password "test123"
+-  And I am on the ABD home page
+   Then I should see "All Recipes"
+   When I follow "cookies"
+   Then I should be on the "cookies" page
+diff --git a/features/SearchRecipe.feature b/features/SearchRecipe.feature
+index 4a8de67..e81161c 100644
+--- a/features/SearchRecipe.feature
++++ b/features/SearchRecipe.feature
+@@ -1,6 +1,9 @@
+ Feature: Displays specific recipe by search
+ 
+ Background: recipe has been added to the database
++  Given the following users exist:
++  | username | name | password | password_confirmation |
++  | Bob      | test | test123  | test123               |
+ 
+   Given the following recipes exist:
+   | name    | description | user_id | ingredients     | instructions | 
+diff --git a/features/SearchRecipe.feature~ b/features/SearchRecipe.feature~
+index ab339b7..4a8de67 100644
+--- a/features/SearchRecipe.feature~
++++ b/features/SearchRecipe.feature~
+@@ -11,7 +11,7 @@ Background: recipe has been added to the database
+ 
+ Scenario: Search recipe by title
+   When I fill in "search_query" with "cookies"
+-  And I follow "Go!"
++  And I press "Go!"
+   Then I should be on the recipes page
+   And I should see "cookies"
+   And I should not see "cake"
+diff --git a/features/SortRecipe.feature b/features/SortRecipe.feature
+index 686e870..cd20ed5 100644
+--- a/features/SortRecipe.feature
++++ b/features/SortRecipe.feature
+@@ -1,6 +1,9 @@
+ Feature: Displays list of sorted recipes
+ 
+ Background: recipe has been added to the database
++  Given the following users exist:
++  | username | name | password | password_confirmation |
++  | Bob      | test | test123  | test123               |
+ 
+   Given the following recipes exist:
+   | name     | description | user_id | created_at |
+diff --git a/features/SortRecipe.feature~ b/features/SortRecipe.feature~
+index 34b3855..686e870 100644
+--- a/features/SortRecipe.feature~
++++ b/features/SortRecipe.feature~
+@@ -13,8 +13,9 @@ Background: recipe has been added to the database
+ 
+   And I am on the ABD home page
+ 
+-Scenario: Sort list of recipes in ascending order
+-  When I follow "Recipe Posted Date"
+-  Then I should see "2013-11-25" before "2013-11-20"
+-
++Scenario: List of recipes is sorted
++  Then I should see "cake" before "cookies"
++  And I should see "cookies" before "pizza"
++  And I should see "pizza" before "stir-fry"
++  And I should see "stir-fry" before "pasta"
+ 

@@ -11,7 +11,7 @@ Background: recipe has been added to the database
 
 Scenario: Search recipe by title
   When I fill in "search_query" with "cookies"
-  And I follow "Go!"
+  And I press "Go!"
   Then I should be on the recipes page
   And I should see "cookies"
   And I should not see "cake"
