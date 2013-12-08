@@ -12,10 +12,11 @@
       A social recipe-sharing site
       %right
       - if signed_in?
-        = link_to 'Profile', current_user
-        = link_to 'Log-out', signout_path, :method => "delete"
+        = link_to 'Profile', current_user, :align => "right"
+        |
+        = link_to 'Log-out', signout_path, :method => "delete", :align => "right"
       - else
-        = link_to 'Log-in', signin_path
+        = link_to 'Log-in', signin_path, :align => "right"
     %nav 
       = link_to 'Home', recipes_path
       |
@@ -25,8 +26,8 @@
       |
       = link_to 'All Comments', comments_path
       %right
-        = form_tag recipes_path, :method => :get do
-          = text_field_tag :search_query, nil, :placeholder => "Search Recipes"
+        = form_tag recipes_path, :action => 'recipe/search', :method => :get do
+          = text_field_tag :search_query, params[:search_query], :placeholder => "Search Recipes"
           = submit_tag 'Go!', :id => 'search_submit'
 
     #main

@@ -12,4 +12,8 @@ class Recipe < ActiveRecord::Base
    #  @rating = 0
    #  @ingredients = ['']
    #end
+    
+   def self.search(search_query)
+     find(:all, :conditions => ['name LIKE ?', "%#{search_query}%"])
+   end
 end

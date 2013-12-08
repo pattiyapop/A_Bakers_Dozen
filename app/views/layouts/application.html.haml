@@ -26,8 +26,8 @@
       |
       = link_to 'All Comments', comments_path
       %right
-        = form_tag recipes_path, :method => :get do
-          = text_field_tag :search_query, nil, :placeholder => "Search Recipes"
+        = form_tag recipes_path, :action => 'search', :method => :get do
+          = text_field_tag :search_query, params[:search_query], :placeholder => "Search Recipes"
           = submit_tag 'Go!', :id => 'search_submit'
 
     #main

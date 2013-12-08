@@ -4,7 +4,13 @@ class RecipesController < ApplicationController
   def index
     #@recipes = Recipe.all
     #sort and filter list of recipes for the view
-    @recipes = Recipe.find(:all, :order => 'recipes.created_at').reverse
+    #@recipes = Recipe.find(:all, :order => 'recipes.created_at').reverse
+    #Add a line for search
+    if :search_query
+      @recipes = Recipe.search(params[:search_query])
+    else     
+      @recipes = Recipe.find(:all, :order => 'recipes.created_at').reverse
+    end
     #@recipes.created_at.strftime("%s").to_i)
     respond_to do |format|
       format.html # index.html.erb
