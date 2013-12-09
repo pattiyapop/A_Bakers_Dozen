@@ -1,10 +1,4 @@
 class User < ActiveRecord::Base
-    attr_accessor :username, :name, :password
-
-    def initialize(attributes = {})
-      @username = attributes[:username]
-      @name = attributes[:name]
-      @password = attributes[:password]
 #relationships:
   #destroys comments if user is destroyed:
   has_many :comments, dependent: :destroy 

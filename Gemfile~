@@ -1,6 +1,10 @@
 source 'http://rubygems.org'
 
-gem 'rails', '3.1.0'
+gem 'rails', '3.2.14'
+
+#added for pagination:
+gem 'will_paginate', '3.0.4'
+gem 'bootstrap-will_paginate', '0.0.9'
 
 #added for CSS:
 gem 'bootstrap-sass', '2.3.2.0'
@@ -23,6 +27,7 @@ end
 group :test do
   gem 'cucumber-rails'
   gem 'cucumber-rails-training-wheels'
+  gem 'rspec-rails'
 end
 group :production do
   gem 'pg', '0.15.1'
