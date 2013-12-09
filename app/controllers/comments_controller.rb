@@ -45,7 +45,7 @@ class CommentsController < ApplicationController
     @comment = Comment.new(params[:comment])
     @comment.recipe_id = params[:recipe_id].to_i
     @comment.user_id = params[:user_id].to_i
-    #debugger
+    debugger
     @recipe = Recipe.find(@comment.recipe_id)
 
     respond_to do |format|

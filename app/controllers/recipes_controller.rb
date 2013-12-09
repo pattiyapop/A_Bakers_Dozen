@@ -2,12 +2,9 @@ class RecipesController < ApplicationController
   # GET /recipes
   # GET /recipes.json
   def index
-    #@recipes = Recipe.all
-    #sort and filter list of recipes for the view
-    #@recipes = Recipe.find(:all, :order => 'recipes.created_at').reverse
-    #Add a line for search
     if :search_query
       @recipes = Recipe.search(params[:search_query])
+      @recipes = @recipes.sort!{ |x, y| x["created_at"] <=> y["created_at"] }.reverse
     else     
       @recipes = Recipe.find(:all, :order => 'recipes.created_at').reverse
     end

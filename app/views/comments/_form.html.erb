@@ -13,12 +13,19 @@
   <%# deleted user_id field, grab from session %>
   <div class="field">
     <%= f.label :content %><br />
-    <%= f.text_area :content %>
+    <%= f.text_area :content, :rows => 5 %>
   </div>
+
   <div class="field">
-    <%= f.label :rating %><br />
-    <%= f.number_field :rating %>
+    <%#= f.label :rating %><br />
+    <%#= f.number_field :rating %>
+    <%= f.label :rating %>
+    <% Comment.all_ratings.each do |rating| %>
+      <br><%= f.radio_button :rating, rating[1], id: rating[0] %>
+      <%= rating[0].humanize %>
+    <% end %>
   </div>
+
     <%= hidden_field_tag :user_id, current_user.id %>
     <%= hidden_field_tag :recipe_id, params[:recipe] %>
   <div class="actions">
