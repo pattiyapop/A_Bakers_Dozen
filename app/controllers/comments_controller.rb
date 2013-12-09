@@ -42,14 +42,11 @@ class CommentsController < ApplicationController
   # POST /comments
   # POST /comments.json
   def create
-    if params[:recipe] != nil
-      @recipe = Recipe.where(:id => params[:recipe])
-    end
-    #@comment = Comment.new(params[:comment], :recipe_id => params[:recipe], :user_id => current_user)
-    #get user and recipe from session or params
-    @comment = current_user.comments.build(comments_params)
-    @comment.recipe_id = params[:recipe_id]
-    #@comment.user_id = current_user
+    @comment = Comment.new(params[:comment])
+    @comment.recipe_id = params[:recipe_id].to_i
+    @comment.user_id = params[:user_id].to_i
+    #debugger
+    @recipe = Recipe.find(@comment.recipe_id)
 
     respond_to do |format|
       if @comment.save

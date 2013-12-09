@@ -2,7 +2,6 @@
   <% if @comment.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@comment.errors.count, "error") %> prohibited this comment from being saved:</h2>
-
       <ul>
       <% @comment.errors.full_messages.each do |msg| %>
         <li><%= msg %></li>
@@ -10,6 +9,7 @@
       </ul>
     </div>
   <% end %>
+
   <%# deleted user_id field, grab from session %>
   <div class="field">
     <%= f.label :content %><br />
@@ -19,7 +19,9 @@
     <%= f.label :rating %><br />
     <%= f.number_field :rating %>
   </div>
+    <%= hidden_field_tag :user_id, current_user.id.to_i %>
+    <%= hidden_field_tag :recipe_id, params[:recipe].to_i %>
   <div class="actions">
-    <%= f.submit, :user_id => current_user %>
+    <%= f.submit %>
   </div>
 <% end %>
