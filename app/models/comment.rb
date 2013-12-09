@@ -9,7 +9,8 @@ class Comment < ActiveRecord::Base
   #orders it by creation date with newest first
   default_scope -> { order('created_at DESC') }
 
-#==sub-header
-#1 list item #1
-#2 list item #2
+  def Comment.all_ratings #class method of Movie
+    all_ratings = {"Icky" => 1, "All right" => 2, "Good" => 3, "Delicious!" => 4}
+  end
+
 end

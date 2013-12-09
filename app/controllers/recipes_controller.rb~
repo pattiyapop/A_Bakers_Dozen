@@ -8,6 +8,7 @@ class RecipesController < ApplicationController
     #Add a line for search
     if :search_query
       @recipes = Recipe.search(params[:search_query])
+      @recipes = @recipes.sort!{ |x, y| x["created_at"] <=> y["created_at"] }.reverse
     else     
       @recipes = Recipe.find(:all, :order => 'recipes.created_at').reverse
     end
