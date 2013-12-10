@@ -4,7 +4,9 @@
 <%= image_tag(@recipe.picture, :size => "250x250", :hspace => '15px', :vspace => '15px', :align => "left") %>
 
 <p>
-   Submitted by <%= link_to @recipe.user.name, @recipe.user %>
+  <% if @recipe.user != nil %>
+   Submitted by <%= link_to @recipe.user.name, @recipe.user %><br>
+  <% end %>
 </p>
 
 <p>
@@ -29,15 +31,15 @@
 
 <b>Comments and Ratings:</b><p>
   <% if signed_in? %>
-    <%= link_to 'Add New Comment/Rating', new_comment_path(:recipe => @recipe) %> <p>
+    <%= link_to 'Add new comment', new_comment_path(:recipe => @recipe) %> <p>
   <% else %>
     Please <%= link_to 'sign-in', signin_path %> to comment.
   <% end %>
 <p>
 
     <% if @recipe.comments.any? %>
-      <%= render @microposts %>
-      <%= will_paginate @microposts %>
+      <%= render @comments %>
+      <%= will_paginate @comments %>
     <% end %>
 
 <% 

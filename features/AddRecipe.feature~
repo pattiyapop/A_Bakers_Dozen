@@ -7,12 +7,13 @@ Background: user has been added to the database
   | username | name | password | password_confirmation | picture  | interests |
   | test     | Test | test123  | test123	       | test.jpg | FOOD      |
 
+  Given I am on the ABD home page
+  Given I am logged in as "test" with password "test123"
   And I am on the recipes page
 
 Scenario: User adds a recipe
-  Given I am logged in as "test" with password "test123"
-  Then I should see "New Recipe"
-  When I follow "New Recipe"
+  Then I should see "Post New Recipe"
+  When I follow "Post New Recipe"
   Then I should be on the Create New Recipe page
   When I fill in "Name" with "Chocolate Mousse"
   And I fill in "Picture" with "http://i.stack.imgur.com/hxgzB.jpg"
@@ -23,5 +24,8 @@ Scenario: User adds a recipe
   Then I should be on the recipes page
   And I should see "Chocolate Mousse"
 
-#Scenario: Viewer can't see "Add new recipe"
-#  Then I should not see "Add new recipe"
+Scenario: Viewer can't see "Add new recipe"
+  When I follow "Log-out"
+  Then I should be on the recipes page
+  And I shoud see "Please sign-in to post a recipe."
+  And I should not see "Add new recipe"

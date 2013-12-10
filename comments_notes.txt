@@ -11,3 +11,14 @@ bunde install --without production
 
 Listing 10.31. Adding a micropost instance variable to the home action. 
 Listing 3.4. Generating a StaticPages controller. 
+
+**user clicks "my recipes", puts in params show => mine to show current_user.recipes
+**fix nvigation links
+**average rating
+**chef rating
+**chef status
+**friends
+**try a rake db:reset
+**security, edit/delete links
+**new button names for 'edit'. or new forms all together!
+**rspec tests

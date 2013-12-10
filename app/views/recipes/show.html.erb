@@ -4,7 +4,9 @@
 <%= image_tag(@recipe.picture, :size => "250x250", :hspace => '15px', :vspace => '15px', :align => "left") %>
 
 <p>
-   Submitted by <%= link_to @recipe.user.name, @recipe.user %>
+  <% if @recipe.user != nil %>
+   Submitted by <%= link_to @recipe.user.name, @recipe.user %><br>
+  <% end %>
 </p>
 
 <p>
@@ -29,7 +31,7 @@
 
 <b>Comments and Ratings:</b><p>
   <% if signed_in? %>
-    <%= link_to 'Add New Comment/Rating', new_comment_path(:recipe => @recipe) %> <p>
+    <%= link_to 'Add new comment', new_comment_path(:recipe => @recipe) %> <p>
   <% else %>
     Please <%= link_to 'sign-in', signin_path %> to comment.
   <% end %>
@@ -53,6 +55,8 @@
 
 <p><HR WIDTH="80%" align="left" SIZE="3" NOSHADE><p>
 
-<%= link_to 'Edit', edit_recipe_path(@recipe) %> |
-<%= link_to 'Delete', @recipe, confirm: 'Are you sure?',method: :delete %> |
+<% if @recipe.user == current_user %>
+  <%= link_to 'Edit', edit_recipe_path(@recipe) %> |
+  <%= link_to 'Delete', @recipe, confirm: 'Are you sure?',method: :delete %> |
+<% end %>
 <%= link_to 'Back', recipes_path %>

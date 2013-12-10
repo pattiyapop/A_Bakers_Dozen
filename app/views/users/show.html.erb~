@@ -26,7 +26,7 @@
    <%= recipe.description %><br><br>
    <%= link_to 'Edit', edit_recipe_path(recipe) %>
    <%= link_to 'Destroy', recipe, confirm: 'Are you sure?',method: :delete %><br>
-   <HR WIDTH="50%" align="left" SIZE="3" NOSHADE><br>
+   <HR WIDTH="30%" align="left" SIZE="1" NOSHADE><br>
 <% end %>
 
 <%= link_to 'Edit', edit_user_path(@user) %> |

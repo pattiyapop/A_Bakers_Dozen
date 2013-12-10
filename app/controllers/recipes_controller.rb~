@@ -2,10 +2,6 @@ class RecipesController < ApplicationController
   # GET /recipes
   # GET /recipes.json
   def index
-    #@recipes = Recipe.all
-    #sort and filter list of recipes for the view
-    #@recipes = Recipe.find(:all, :order => 'recipes.created_at').reverse
-    #Add a line for search
     if :search_query
       @recipes = Recipe.search(params[:search_query])
       @recipes = @recipes.sort!{ |x, y| x["created_at"] <=> y["created_at"] }.reverse
@@ -42,7 +38,7 @@ class RecipesController < ApplicationController
   # GET /recipes/new.json
   def new
     @recipe = Recipe.new
-
+    #@recipe.user_id = params[:user_id].to_i
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @recipe }
@@ -58,7 +54,10 @@ class RecipesController < ApplicationController
   # POST /recipes.json
   #changed redirect to go to home page
   def create
+    debugger
     @recipe = Recipe.new(params[:recipe])
+    @recipe.user_id = params[:user_id].to_i
+    debugger
 
     respond_to do |format|
       if @recipe.save

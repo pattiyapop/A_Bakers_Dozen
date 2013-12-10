@@ -19,7 +19,7 @@
   <div class="field">
     <%#= f.label :rating %><br />
     <%#= f.number_field :rating %>
-    <%= f.label :rating %>Rating: 
+    <%= f.label :rating %>
     <% Comment.all_ratings.each do |rating| %>
       <br><%= f.radio_button :rating, rating[1], id: rating[0] %>
       <%= rating[0].humanize %>

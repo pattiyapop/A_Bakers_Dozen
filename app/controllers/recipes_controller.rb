@@ -38,7 +38,7 @@ class RecipesController < ApplicationController
   # GET /recipes/new.json
   def new
     @recipe = Recipe.new
-
+    #@recipe.user_id = params[:user_id].to_i
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @recipe }
@@ -55,6 +55,7 @@ class RecipesController < ApplicationController
   #changed redirect to go to home page
   def create
     @recipe = Recipe.new(params[:recipe])
+    @recipe.user_id = params[:user_id].to_i
 
     respond_to do |format|
       if @recipe.save

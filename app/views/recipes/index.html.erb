@@ -1,15 +1,19 @@
 <h1>All recipes</h1>
-<%= link_to 'Post New Recipe', new_recipe_path %><br>
+  <% if signed_in? %>
+    <%= link_to 'Post New Recipe', new_recipe_path %><br>
+  <% else %>
+    Please <%= link_to 'sign-in', signin_path %> to post a recipe.
+  <% end %>
 <HR WIDTH="70%" align="left" SIZE="3" NOSHADE><br>
 
 <% @recipes.each do |recipe| %>
    <%= image_tag(recipe.picture, :size => "130x130", :hspace => '15px', :vspace => '5px', :align => "left") %>
-   <b><%= link_to recipe.name, recipe %></b><br>
+   <b><%= link_to recipe.name, recipe %></b><br><br>
+  <% if recipe.user != nil %>
    Submitted by <%= link_to recipe.user.name, recipe.user %><br>
+  <% end %>
    Submitted on <%= recipe.created_at.strftime("%m/%d/%Y") %><br><br>
    <b>Description:</b><br>
    <%= recipe.description %><br><br>
-   <%= link_to 'Edit', edit_recipe_path(recipe) %>
-   <%= link_to 'Destroy', recipe, confirm: 'Are you sure?',method: :delete %><br>
    <HR WIDTH="50%" align="left" SIZE="3" NOSHADE><br>
 <% end %>
