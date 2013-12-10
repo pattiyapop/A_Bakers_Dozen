@@ -8,12 +8,18 @@ user.microposts.build(arg)	Return a new Micropost object (user_id = user.id).
 bunde install --without production
  1685  bundle exec rake db:populate
  1686  bundle exec rake test:prepare
+maybe  bundle exec rake db:reset
 
 Listing 10.31. Adding a micropost instance variable to the home action. 
 Listing 3.4. Generating a StaticPages controller. 
 
-**user clicks "my recipes", puts in params show => mine to show current_user.recipes
+**rspec tests
+**deploy on heroku
 **fix nvigation links
+
+**after each change, re-run cucumber
+
+**user clicks "my recipes", puts in params show => mine to show current_user.recipes
 **average rating
 **chef rating
 **chef status
@@ -21,4 +27,34 @@ Listing 3.4. Generating a StaticPages controller.
 **try a rake db:reset
 **security, edit/delete links
 **new button names for 'edit'. or new forms all together!
-**rspec tests
+
+1. if signed_in?
+
+2. 10.32: rendering error messages
+
+3. users.rb: to avoid SQL injection:
+class User < ActiveRecord::Base
+  .
+  .
+  .
+  def feed
+    # This is preliminary. See "Following users" for the full implementation.
+    Micropost.where("user_id = ?", id)
+  end
+  .
+  .
+  .
+end
+
+4. in static pages controller:
+  def home
+    if signed_in?
+      @micropost  = current_user.microposts.build
+      @feed_items = current_user.feed.paginate(page: params[:page])
+    end
+  end
+
+5. partials for feeds
+
+-add photo for each comment
+-take out profile image
