@@ -3,7 +3,7 @@ require "spec_helper"
 
 describe User do
 
-  before { @user = User.new(username: "Example User", name: "user") }
+  before { @user = User.new(username: "Example User", name: "user", password: "test", password_confirmation: "test") }
 
   subject { @user }
 
@@ -20,6 +20,6 @@ describe User do
 
   describe "when name is not present" do
     before { @user.name = " " }
-    it { should_not be_valid
+    it { should_not be_valid }
   end
 end

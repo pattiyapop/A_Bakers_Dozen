@@ -5,6 +5,7 @@ class User < ActiveRecord::Base
       @username = attributes[:username]
       @name = attributes[:name]
       @password = attributes[:password]
+    end
 #relationships:
   #destroys comments if user is destroyed:
   has_many :comments, dependent: :destroy 

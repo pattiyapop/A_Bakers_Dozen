@@ -1,3 +1,6 @@
+#**********run bundle install --without production
+#*********then rails generate rspec:install, but DON'T overwrite the helper
+
 source 'http://rubygems.org'
 
 gem 'rails', '3.1.0'
@@ -25,9 +28,10 @@ group :development, :test do
   gem 'rspec-rails'
 end
 group :test do
-  gem 'cucumber-rails'
+  gem 'cucumber-rails', :require => false
   gem 'cucumber-rails-training-wheels'
   gem 'rspec-rails'
+  gem 'mocha', :require => false #slide 24
 end
 group :production do
   gem 'pg', '0.15.1'
