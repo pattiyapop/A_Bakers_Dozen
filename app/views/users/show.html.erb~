@@ -1,5 +1,6 @@
 <p id="notice"><%= notice %></p>
 
+<!----------------------------
 <div class="row">
   <aside class="span4">
     <section>
@@ -12,6 +13,11 @@
 </div>
 
 <p><HR WIDTH="50%" align="left" SIZE="3" NOSHADE><p>
+------------------->
+<h1><%= @user.username %></h1>
+<%= image_tag(@recipe.picture, :size => "250x250", :hspace => '15px', :vspace => '15px', :align => "left") %>
+
+<p>
 
 <b>Name: </b><%= @user.name %><br>
 <b>Interests: </b><%= @user.interests %><br>
@@ -24,8 +30,10 @@
    Submitted on <%= recipe.created_at.strftime("%m/%d/%Y") %><br><br>
    <b>Description:</b><br>
    <%= recipe.description %><br><br>
+<% if @user == current_user %>
    <%= link_to 'Edit', edit_recipe_path(recipe) %>
    <%= link_to 'Destroy', recipe, confirm: 'Are you sure?',method: :delete %><br>
+<% end %>
    <HR WIDTH="30%" align="left" SIZE="1" NOSHADE><br>
 <% end %>
 

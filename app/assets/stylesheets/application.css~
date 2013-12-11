@@ -1,6 +1,6 @@
 /*$lightPurple: #CCCCFF;*/
 /*$mediumPurple: #996699;*/
-@import "bootstrap";
+
 html, body {
   margin: 0;
   padding: 0;
@@ -24,7 +24,8 @@ a:hover {
 }
 h1 {
   color: #CCCCFF;/*#996699;*/
-  background-color: #CCCCFF;
+  /*background-color: #CCCCFF;*/
+  background: transparent;
   font-size: 150%;
   font-style: italic;
   display: block;

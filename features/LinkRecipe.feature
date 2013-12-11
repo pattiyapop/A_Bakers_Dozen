@@ -14,4 +14,4 @@ Background: recipe has been added to the database
 Scenario: User clicks on a recipe link
   Then I should see "All Recipes"
   When I follow "cookies"
-  Then I should be on the "cookies" page
+  Then I should be on the "cookies" recipe page

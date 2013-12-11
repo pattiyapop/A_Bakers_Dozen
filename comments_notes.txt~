@@ -20,8 +20,9 @@ Listing 3.4. Generating a StaticPages controller.
 
 $ git push heroku master
 $ heroku pg:reset DATABASE
-$ heroku run rake db:migrate
-$ heroku run rake db:populate
+$ heroku run rake db:migrate --app stark-wave-3734
+$ heroku run rake db:populate --app stark-wave-3734
+heroku run rake db:seed --app stark-wave-3734
 
 **after each change, re-run cucumber. 212/296.
 

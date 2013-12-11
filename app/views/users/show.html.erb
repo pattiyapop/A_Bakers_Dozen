@@ -1,5 +1,6 @@
 <p id="notice"><%= notice %></p>
 
+<!----------------------------
 <div class="row">
   <aside class="span4">
     <section>
@@ -12,6 +13,11 @@
 </div>
 
 <p><HR WIDTH="50%" align="left" SIZE="3" NOSHADE><p>
+------------------->
+<h1><%= @user.username %></h1>
+<%= image_tag(@user.picture, :size => "250x250", :hspace => '15px', :vspace => '15px', :align => "left") %>
+
+<p>
 
 <b>Name: </b><%= @user.name %><br>
 <b>Interests: </b><%= @user.interests %><br>

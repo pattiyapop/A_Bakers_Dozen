@@ -65,3 +65,5 @@ end
 
 -add photo for each comment
 -take out profile image
+
+-11.2 now

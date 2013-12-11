@@ -17,13 +17,19 @@ Given /the following comments exist/ do |comments_table|
   end
 end
 
-Given /^I am logged in as "(.*?)" with( the)? password "(.*?)"$/ do |user, password|
+Given /^I am logged in as "(.*?)" with( the)? password "(.*?)"$/ do |user, the, password|
   steps %Q{
     When I follow "Log-in"
     Then I should be on the Log-in page
     When I fill in "Username" with "#{user}"
     And I fill in "Password" with "#{password}"
     And I press "Sign in"
+  }
+end
+
+When /^I log-in as "(.*?)" with( the)? password "(.*?)"$/ do |user, the, password|
+  steps %Q{
+    When I am logged in as "#{user}" with the password "#{password}"
   }
 end
 
@@ -43,6 +49,10 @@ When /^the "(.*?)" profile page$/i do |user|
   user_path(User.find_by_username(user))
 end
  
+When /^the "(.*?)" recipe page$/i do |name|
+  recipe_path(Recipe.find_by_name(name))
+end
+
 Then /I should see "(.*)" before "(.*)"/ do |e1, e2|
   #  ensure that that e1 occurs before e2.
   #  page.body is the entire content of the page as a string.

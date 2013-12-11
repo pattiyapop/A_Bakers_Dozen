@@ -24,6 +24,7 @@ module NavigationHelpers
     when /^the same Log-in page$/ then '/sessions' #alternate
     when /^my profile page$/ then '/users/1'
     when /^the "(.*?)" profile page$/i then user_path(User.find_by_username($1))
+    when /^the "(.*?)" recipe page$/i then recipe_path(Recipe.find_by_name($1))
     when /^the sign-up page again$/ then '/users' #alternate
 
     # Add more mappings here.

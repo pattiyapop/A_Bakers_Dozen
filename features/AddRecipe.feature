@@ -21,7 +21,7 @@ Scenario: User adds a recipe
   And I fill in "Ingredients" with "DELICIOUS"
   And I fill in "Instructions" with "EAT"
   And I press "Create Recipe"
-  Then I should be on the recipes page
+  Then I should be on the "Chocolate Mousse" recipe page
   And I should see "Chocolate Mousse"
 
 Scenario: Viewer can't see "Add new recipe"

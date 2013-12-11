@@ -27,6 +27,12 @@ Given /^I am logged in as "(.*?)" with( the)? password "(.*?)"$/ do |user, the, 
   }
 end
 
+When /^I log-in as "(.*?)" with( the)? password "(.*?)"$/ do |user, the, password|
+  steps %Q{
+    When I am logged in as "#{user}" with the password "#{password}"
+  }
+end
+
 Then /I should see "(.*?)" in the "(.*?)" field$/ do |arg1, arg2|
   find_field("#{arg2}").value.should == arg1
   #pending # express the regexp above with the code you wish you had
@@ -43,10 +49,23 @@ When /^the "(.*?)" profile page$/i do |user|
   user_path(User.find_by_username(user))
 end
  
+When /^the "(.*?)" recipe page$/i do |name|
+  recipe_path(Recipe.find_by_name(name))
+end
+
 Then /I should see "(.*)" before "(.*)"/ do |e1, e2|
   #  ensure that that e1 occurs before e2.
   #  page.body is the entire content of the page as a string.
   index1 = page.body.index(e1)
   index2 = page.body.index(e2)
   assert index1 <= index2
+end
+
+#check the html
+And /the page should have "(.*)"/ do |el|
+  if page.respond_to? :should
+    page.body.should have_content(text)
+  else
+    assert page.body.has_content?(text)
+  end
 end
