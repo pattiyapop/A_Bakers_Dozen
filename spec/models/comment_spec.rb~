@@ -13,22 +13,22 @@ describe Comment do
   it { should be_valid }
 
   describe "when content is not present" do
-    before { @comment.content = " " }
+    before { @comment.content = nil }
     it { should_not be_valid }
   end
 
   describe "when rating is not present" do
-    before { @comment.rating = " " }
+    before { @comment.rating = nil }
     it { should_not be_valid }
   end
 
   describe "when user has been deleted" do
-    before { @comment.user_id = " " }
+    before { @comment.user_id = nil }
     it { should_not be_valid }
   end
 
   describe "when recipe has been deleted" do
-    before { @comment.recipe_id = " " }
+    before { @comment.recipe_id = nil }
     it { should_not be_valid }
   end
 end
