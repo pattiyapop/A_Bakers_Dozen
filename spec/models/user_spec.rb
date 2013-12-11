@@ -29,6 +29,36 @@ describe User do
     it { should_not be_valid }
   end
 
+  describe "when password confirm is not present" do
+    before { @user.password_confirmation = " " }
+    it { should_not be_valid }
+  end
+
+  describe "when username is too long" do
+    before { @user.username = "a" * 26 }
+    it { should_not be_valid }
+  end
+
+  describe "when name is too long" do
+    before { @user.name = "a" * 51 }
+    it { should_not be_valid }
+  end
+
+  describe "when password is too short" do
+    before { @user.password = "a" }
+    it { should_not be_valid }
+  end
+
+  describe "when password is too short" do
+    before { @user.password = "a" * 2 }
+    it { should_not be_valid }
+  end
+
+  describe "when password is too short" do
+    before { @user.password = "a" * 3 }
+    it { should_not be_valid }
+  end
+
   #following
   describe "following" do
     let(:other_user) { FactoryGirl.create(:user) }
@@ -55,3 +85,4 @@ describe User do
       its(:followers) { should include(@user) }
     end
   end
+end

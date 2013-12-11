@@ -29,12 +29,6 @@ describe User do
     it { should_not be_valid }
   end
 
-<<<<<<< HEAD
-  describe "when password is not present" do
-    before { @user.password = " " }
-    it { should_not be_valid }
-  end
-  
   describe "when password confirm is not present" do
     before { @user.password_confirmation = " " }
     it { should_not be_valid }
@@ -65,11 +59,6 @@ describe User do
     it { should_not be_valid }
   end
 
-  describe "when password is too short" do
-    before { @user.password = "a" * 5 }
-    it { should_not be_valid }
-  end
-=======
   #following
   describe "following" do
     let(:other_user) { FactoryGirl.create(:user) }
@@ -87,7 +76,13 @@ describe User do
       it { should_not be_following(other_user) }
       its(:followed_users) { should_not include(other_user) }
     end
-  end
 
->>>>>>> 783040759af531f0669e4f86d93126a2e74623a4
+    it { should be_following(other_user) }
+    its(:followed_users) { should include(other_user) }
+
+    describe "followed user" do
+      subject { other_user }
+      its(:followers) { should include(@user) }
+    end
+  end
 end
