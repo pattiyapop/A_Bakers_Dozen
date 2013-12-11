@@ -13,11 +13,17 @@ maybe  bundle exec rake db:reset
 Listing 10.31. Adding a micropost instance variable to the home action. 
 Listing 3.4. Generating a StaticPages controller. 
 
+----------------------------------------
 **rspec tests
 **deploy on heroku
 **fix nvigation links
 
-**after each change, re-run cucumber
+$ git push heroku master
+$ heroku pg:reset DATABASE
+$ heroku run rake db:migrate
+$ heroku run rake db:populate
+
+**after each change, re-run cucumber. 212/296.
 
 **user clicks "my recipes", puts in params show => mine to show current_user.recipes
 **average rating

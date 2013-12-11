@@ -24,8 +24,10 @@
    Submitted on <%= recipe.created_at.strftime("%m/%d/%Y") %><br><br>
    <b>Description:</b><br>
    <%= recipe.description %><br><br>
+<% if @user == current_user %>
    <%= link_to 'Edit', edit_recipe_path(recipe) %>
    <%= link_to 'Destroy', recipe, confirm: 'Are you sure?',method: :delete %><br>
+<% end %>
    <HR WIDTH="30%" align="left" SIZE="1" NOSHADE><br>
 <% end %>
 

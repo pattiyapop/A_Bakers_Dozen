@@ -1,4 +1,6 @@
 class RecipesController < ApplicationController
+  before_filter :correct_user,   only: :destroy
+
   # GET /recipes
   # GET /recipes.json
   def index
@@ -54,10 +56,8 @@ class RecipesController < ApplicationController
   # POST /recipes.json
   #changed redirect to go to home page
   def create
-    debugger
     @recipe = Recipe.new(params[:recipe])
     @recipe.user_id = params[:user_id].to_i
-    debugger
 
     respond_to do |format|
       if @recipe.save
@@ -97,4 +97,10 @@ class RecipesController < ApplicationController
       format.json { head :ok }
     end
   end
+
+  private
+    def correct_user
+      @recipe = current_user.recipes.find_by(id: params[:id])
+      redirect_to root_url if @recipe.nil?
+    end
 end

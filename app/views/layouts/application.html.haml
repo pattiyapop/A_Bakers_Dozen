@@ -11,18 +11,19 @@
     %h1.subtitle
       A social recipe-sharing site
       %right
-      - if signed_in?
-        = link_to 'Profile', current_user, :align => "right"
-        |
-        = link_to 'Log-out', signout_path, :method => "delete", :align => "right"
-      - else
-        = link_to 'Log-in', signin_path, :align => "right"
+        - if signed_in?
+          = link_to 'Profile', current_user
+          |
+          = link_to 'Log-out', signout_path, :method => "delete"
+        - else
+          = link_to 'Log-in', signin_path
     %nav 
       = link_to 'Home', recipes_path
-      |
-      = link_to 'Followed Recipes', recipes_path
-      |
-      = link_to 'My Friends', users_path
+      - if signed_in?
+        |
+        = link_to 'Followed Recipes', recipes_path
+        |
+        = link_to 'My Friends', users_path
       %right
         = form_tag recipes_path, :action => 'search', :method => :get do
           = text_field_tag :search_query, params[:search_query], :placeholder => "Search Recipes"

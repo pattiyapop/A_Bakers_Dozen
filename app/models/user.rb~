@@ -1,15 +1,23 @@
 class User < ActiveRecord::Base
-    attr_accessor :username, :name, :password
+#    attr_accessor :username, :name, :password
 
-    def initialize(attributes = {})
-      @username = attributes[:username]
-      @name = attributes[:name]
-      @password = attributes[:password]
-    end
+#    def initialize(attributes = {})
+#      @username = attributes[:username]
+#      @name = attributes[:name]
+#      @password = attributes[:password]
+#    end
 #relationships:
   #destroys comments if user is destroyed:
   has_many :comments, dependent: :destroy 
   has_many :recipes
+#followers:
+  has_many :relationships, foreign_key: "follower_id", dependent: :destroy
+  has_many :followed_users, through: :relationships, source: :followed
+  has_many :reverse_relationships, foreign_key: "followed_id",
+                                   class_name:  "Relationship", #not its own class
+                                   dependent:   :destroy
+  has_many :followers, through: :reverse_relationships, source: :follower
+
 #6.3.2: password and password_confirmation attributes: these virtual attributes are implemented automatically by has_secure_password.
   has_secure_password
 
@@ -37,6 +45,20 @@ class User < ActiveRecord::Base
     Digest::SHA1.hexdigest(token.to_s)
   end
 
+#section 11: following others
+  def following?(other_user)
+    #relationships.find_by(followed_id: other_user.id) #in ruby 4.0
+    relationships.find_by_followed_id(other_user.id)
+  end
+
+  def follow!(other_user)
+    relationships.create!(followed_id: other_user.id)
+  end
+
+  def unfollow!(other_user)
+    relationships.find_by(followed_id: other_user.id).destroy!
+  end
+  ############################################################
   private
 
     def create_remember_token

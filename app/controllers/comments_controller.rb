@@ -1,6 +1,7 @@
 class CommentsController < ApplicationController
 #*** really only need pages for create and destroy. also index.
   before_filter :signed_in_user, only: [:create, :destroy]
+  before_filter :correct_user,   only: :destroy
 
   # GET /comments
   # GET /comments.json
@@ -92,5 +93,10 @@ class CommentsController < ApplicationController
 
     def comments_params
       params.require(:comment).permit(:content)
+    end
+
+    def correct_user
+      @comment = current_user.comments.find_by(id: params[:id])
+      redirect_to root_url if @comment.nil?
     end
 end

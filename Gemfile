@@ -32,6 +32,7 @@ group :test do
   gem 'cucumber-rails-training-wheels'
   gem 'rspec-rails'
   gem 'mocha', :require => false #slide 24
+  gem 'factory_girl_rails', '4.2.1' #section 6
 end
 group :production do
   gem 'pg', '0.15.1'
