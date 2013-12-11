@@ -29,5 +29,7 @@
    <HR WIDTH="30%" align="left" SIZE="1" NOSHADE><br>
 <% end %>
 
-<%= link_to 'Edit', edit_user_path(@user) %> |
+<% if @user == current_user %>
+  <%= link_to 'Edit my information', edit_user_path(@user) %> |
+<% end %>
 <%= link_to 'Back', users_path %>

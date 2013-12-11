@@ -1,4 +1,4 @@
-
+#we don't have / need static pages in our app???
 
 describe "Static pages" do
 

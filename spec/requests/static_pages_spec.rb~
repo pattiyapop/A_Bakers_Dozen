@@ -1,4 +1,6 @@
-#require 'routes.rb'
+#we don't have / need static pages in our app
+
+=begin{
 
 describe "Static pages" do
 
@@ -98,3 +100,5 @@ describe "Static pages" do
       end
     end
 end
+
+=end}

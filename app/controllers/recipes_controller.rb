@@ -1,4 +1,6 @@
 class RecipesController < ApplicationController
+  before_filter :correct_user,   only: :destroy
+
   # GET /recipes
   # GET /recipes.json
   def index
@@ -59,8 +61,8 @@ class RecipesController < ApplicationController
 
     respond_to do |format|
       if @recipe.save
-        format.html { redirect_to recipes_path, notice: 'Recipe was successfully created.' }
-        format.json { render json: recipes_path, status: :created, location: @recipe }
+        format.html { redirect_to @recipe, notice: 'Recipe was successfully created.' }
+        format.json { render json: @recipe, status: :created, location: @recipe }
       else
         format.html { render action: "new" }
         format.json { render json: @recipe.errors, status: :unprocessable_entity }
@@ -95,4 +97,10 @@ class RecipesController < ApplicationController
       format.json { head :ok }
     end
   end
+
+  private
+    def correct_user
+      @recipe = current_user.recipes.find_by(id: params[:id])
+      redirect_to root_url if @recipe.nil?
+    end
 end
