@@ -7,9 +7,15 @@ ABakersDozen::Application.routes.draw do
   root :to => redirect('/recipes')
   get "recipes/new"
 
-  resources :users
+  #resources :users
+  resources :users do
+    member do
+      get :following, :followers
+    end
+  end
   #root :to => redirect('/users')
   #get "users/new"
+  
   
   match '/signup', to: 'users#new', via: 'get' #gives us signup_path
   match '/home', to: 'recipes#index'
