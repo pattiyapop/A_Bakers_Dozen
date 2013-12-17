@@ -1,28 +1,46 @@
 <% provide(:title, @title) %>
 <div class="row">
   <aside class="span4">
+
     <section>
-      <%= image_tag(@user.picture, :size => "250x250", :hspace => '15px', :vspace => '15px', :align => "left") %>
-      <h1><%= @user.name %></h1>
-      <span><%= link_to "view my profile", @user %></span>
-      <span><b>Recipes:</b> <%= @user.recipes.count %></span>
+      <h1><%= @user.name %>'s Followers</h1>
     </section>
+
     <section>
       <%= render 'shared/stats' %>
       <% if @users.any? %>
         <div class="user_avatars">
           <% @users.each do |user| %>
-            <%= link_to image_tag(user.picture, :size => "30x30"), user %>
+            <%= link_to image_tag('defaultprofile.jpg', :size => "30x30"), user %>
+            <%# instead of user.picture, do defaultprofile.jpg for now %>
           <% end %>
         </div>
       <% end %>
     </section>
   </aside>
+
+<HR WIDTH="50%" align="left" SIZE="3" NOSHADE><br>
+<h1><%= @user.name %>'s Followed Recipes</h1><p>
+
   <div class="span8">
-    <h3><%= @title %></h3>
+    <h3><%#= @title %></h3>
     <% if @users.any? %>
       <ul class="users">
-        <%= render @users.recipe %>
+        <% @user.followed_users.each do |followed_user| %>
+          <% followed_user.recipes.each do |recipe| %>
+            <%#= render recipe %>
+               <%= image_tag(recipe.picture, :size => "130x130", :hspace => '15px', :vspace => '5px', :align => "left") %>
+   		<b><%= link_to recipe.name, recipe %></b><br><br>
+  		<% if recipe.user != nil %>
+  		 Submitted by <%= link_to recipe.user.name, recipe.user %><br>
+  		<% end %>
+  		 Submitted on <%= recipe.created_at.strftime("%m/%d/%Y") %><br><br>
+  		 <b>Description:</b><br>
+   		<%= recipe.description %><br><br>
+   		<HR WIDTH="50%" align="left" SIZE="3" NOSHADE><br>
+          <% end %>
+        <% end %>
+        <%#= RENDER RECIPES FOLLOWED HERE %>
       </ul>
       <%= will_paginate %>
     <% end %>

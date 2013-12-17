@@ -93,7 +93,7 @@ class UsersController < ApplicationController
       format.json { head :ok }
     end
   end
-
+#-------------------------------------------
   def following
     @title = "Following"
     @user = User.find(params[:id])

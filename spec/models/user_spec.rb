@@ -102,4 +102,28 @@ describe User do
       its(:followers) { should include(@user) }
     end
   end
+   
+    #feed
+    describe "status" do
+      let(:unfollowed_post) do
+        FactoryGirl.create(:recipe, user: FactoryGirl.create(:user))
+      end
+      let(:followed_user) { FactoryGirl.create(:user) }
+
+      before do
+        @user.follow!(followed_user)
+        3.times { followed_user.recipes.create!(name: "Lorem ipsum", ingredients: "..", instructions: "..", picture: "..") }
+      end
+
+      its(:feed) { should include(newer_recipes) }
+      its(:feed) { should include(older_recipes) }
+      its(:feed) { should_not include(unfollowed_recipes) }
+      its(:feed) do
+        followed_user.recipes.each do |recipe|
+          should include(recipe)
+        end
+      end
+    end
+  end
+
 end

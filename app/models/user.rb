@@ -73,6 +73,10 @@ class User < ActiveRecord::Base
     relationships.find_by_followed_id(other_user.id).destroy
     #***used to be 'destroy!'
   end
+
+  def feed
+    Recipe.from_users_followed_by(self)
+  end
   ############################################################
   private
 
