@@ -57,6 +57,17 @@ describe "Static pages" do
         visit users_path
         expect(page).to have_title("A Baker's Dozen")
       end
+
+      describe "follower/following counts" do
+        let(:other_user) { FactoryGirl.create(:user) }
+        before do
+          other_user.follow!(user)
+          visit users_path
+      end
+
+        it { should have_link("0 following", href: following_user_path(user)) }
+        it { should have_link("1 followers", href: followers_user_path(user)) }
+      end
     end
 
     describe "Log-in page" do

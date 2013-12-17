@@ -21,21 +21,26 @@ def make_users
    #user= User.create!(name: "Tom",
    #                    password: "foo123",
    #                    password_confirmation: "foo123")
-  99.times do |n|
+  users = User.all
+  users.each do |n|
     #name = "name#{n}"
     #name = Faker::Name.name
     username = "username#{n}"
     password = "password"
-    password_confirmation = 'password'
+    password_confirmation = "password"
+    picture = "picture"
+    interest = "interest"
     User.create!(username: username,
 		 password: password,
-                 password_confirmation: password)
+                 password_confirmation: password,
+		 picture: picture,
+		 interest: interest)
     end
 end 
 
 def make_comments
   recipes = Recipe.all(limit: 6)
-  50.times do
+  recipes.each do |recipe|
     content = Faker::Lorem.sentence(5)
     recipes.comments.each { |recipe| recipe.comments.create!(content: content, user_id: user.id, rating: rating) }
   end
@@ -45,7 +50,7 @@ def make_recipes
   users = User.all(limit: 10)
   50.times do
     content = Faker::Lorem.sentence(5)
-    users.recipes.each { |user| user.recipes.create!(content: content) }
+    users.recipes.each { |user| user.recipes.create!(name: name, picture: picture, description: description, ingredients: ingredients, 		instructions: instructions, user_id: user_id) }
   end
 end
 
