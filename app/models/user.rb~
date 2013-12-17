@@ -7,7 +7,7 @@ class User < ActiveRecord::Base
 #      @password = attributes[:password]
 #    end
 
-#def initialize
+#def initialize(user)
 #  @picture = "/assets/defaultprofile.png"
 #end
 
@@ -71,6 +71,7 @@ class User < ActiveRecord::Base
 
   def unfollow!(other_user)
     relationships.find_by_followed_id(other_user.id).destroy!
+    #***used to be 'destroy!'
   end
   ############################################################
   private

@@ -1,0 +1,20 @@
+<h1>My Followed Recipes</h1>
+  <% if signed_in? %>
+    <% if curent_user.recipes.any? %>
+      <% current_user.recipes.each do |recipe| %>
+        <%= image_tag(recipe.picture, :size => "130x130", :hspace => '15px', :vspace => '5px', :align => "left") %>
+        <b><%= link_to recipe.name, recipe %></b><br><br>
+        <% if recipe.user != nil %>
+          Submitted by <%= link_to recipe.user.name, recipe.user %><br>
+        <% end %>
+        Submitted on <%= recipe.created_at.strftime("%m/%d/%Y") %><br><br>
+        <b>Description:</b><br>
+        <%= recipe.description %><br><br>
+        <HR WIDTH="50%" align="left" SIZE="3" NOSHADE><br>
+      <% end %>
+    <% else %>
+      Go <%= link_to 'find', recipes_path %> some recipes!
+    <% end %>
+  <% else %>
+    Please <%= link_to 'sign-in', signin_path %> to follow recipes.
+  <% end %>

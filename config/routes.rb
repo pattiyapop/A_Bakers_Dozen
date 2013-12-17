@@ -1,13 +1,16 @@
 ABakersDozen::Application.routes.draw do
-  root :to => 'recipes#index'
+  get "static_pages/home"
+  get "static_pages/help"
+  get "static_pages/followed_recipes"
 
-  resources :comments
-
+  #root :to => 'recipes#index'
   resources :recipes
   root :to => redirect('/recipes')
   get "recipes/new"
 
   #resources :users
+  #GET	/users/1/following	following	following_user_path(1)
+  #GET	/users/1/followers	followers	followers_user_path(1)
   resources :users do
     member do
       get :following, :followers
@@ -28,5 +31,5 @@ ABakersDozen::Application.routes.draw do
   resources :users, only: [:new, :create, :destroy]
   resources :relationships, only: [:create, :destroy]
   #comments don't need a 'new' or 'edit' method:
-  resources :comments, only: [:create, :destroy]
+  resources :comments, only: [:new, :create, :destroy]
 end

@@ -1,12 +1,17 @@
 <h1><%= @user.username %></h1>
+
+<div class="row">
+  <aside class="span4">
+
 <%= image_tag(@user.picture, :size => "250x250", :hspace => '15px', :vspace => '15px', :align => "left") %>
 
 <p>
 
 <b>Name: </b><%= @user.name %><br>
-<b>Interests: </b><%= @user.interests %><br>
-<b><%= @user.username %>'s Recipes: </b>
 <b>Chef?: </b><%= @user.chef %><br>
+<b>Interests: </b><%= @user.interests %><br>
+<b><%= @user.username %>'s Recipes: </b></br>
+
 
 <p><HR WIDTH="50%" align="left" SIZE="3" NOSHADE><p>
 <% @user.recipes.each do |recipe| %>
@@ -21,6 +26,16 @@
 <% end %>
    <HR WIDTH="30%" align="left" SIZE="1" NOSHADE><br>
 <% end %>
+
+    <section>
+      <%= render 'shared/stats' %>
+    </section>
+  </aside>
+  <div class="span8">
+    <%= render 'follow_form' if signed_in? %>
+  </div>
+</div>
+
 
 <% if @user == current_user %>
   <%= link_to 'Edit my information', edit_user_path(@user) %> |

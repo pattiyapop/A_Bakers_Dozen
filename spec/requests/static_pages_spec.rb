@@ -2,6 +2,7 @@
 
 describe "Static pages" do
 
+    #HOME PAGE
     describe "Home page" do
 
       it "should have the h1 'A Baker's Dozen'" do
@@ -20,6 +21,7 @@ describe "Static pages" do
       end
     end
 
+    #ALL COMMENTS: DON'T NEED
     describe "All Comments page" do
     
       it "should have h1 'A Baker's Dozen'" do
@@ -33,6 +35,7 @@ describe "Static pages" do
       end
     end
 
+    #MY RECIPES
     describe "My Recipes page" do
     
       it "should have h1 'A Baker's Dozen'" do
@@ -46,6 +49,7 @@ describe "Static pages" do
       end
     end
 
+    #MY FRIENDS / WHO I'M FOLLOWING
     describe "My Friends page" do
     
       it "should have h1 'A Baker's Dozen'" do
@@ -58,6 +62,7 @@ describe "Static pages" do
         expect(page).to have_title("A Baker's Dozen")
       end
 
+     #LOG-IN PAGE
      describe "Log-in page" do
     
       it "should have h1 'A Baker's Dozen'" do
@@ -70,7 +75,8 @@ describe "Static pages" do
         expect(page).to have_title("A Baker's Dozen")
       end
     end
-
+ 
+    #LOG-OUT PAGE
     describe "Log-out page" do
     
       it "should have h1 'A Baker's Dozen'" do
@@ -84,6 +90,7 @@ describe "Static pages" do
       end
     end
 
+    #PROFILE PAGE
     describe "Profile page" do
     
       it "should have h1 'A Baker's Dozen'" do
@@ -97,18 +104,18 @@ describe "Static pages" do
       end
     end
 
+    #FOLLOW RECIPES PAGE
     describe "Follow Recipes" do
       describe "for signed-in users" do
       let(:user) { FactoryGirl.create(:user) }
       before do
-        FactoryGirl.create(:micropost, user: user, content: "Lorem")
-        FactoryGirl.create(:micropost, user: user, content: "Ipsum")
+        FactoryGirl.create(:recipe, user: user, name: "food", ingredients: "1 C ingredients", instructions: "1. instructions", picture: "picture.jpg")
         sign_in user
         visit root_path
       end
 
-      it "should render the user's feed" do
-        user.feed.each do |item|
+      it "should render the user's recipe feed" do
+        user.feed.each do |item| #***don't have a feed yet
           expect(page).to have_selector("li##{item.id}", text: item.content)
         end
       end
