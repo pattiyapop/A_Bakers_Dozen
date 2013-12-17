@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131211035830) do
+ActiveRecord::Schema.define(:version => 20131217170200) do
 
   create_table "comments", :force => true do |t|
     t.text     "content"
@@ -55,6 +55,7 @@ ActiveRecord::Schema.define(:version => 20131211035830) do
     t.datetime "updated_at"
     t.string   "password_digest"
     t.string   "remember_token"
+    t.boolean  "chef",            :default => false
   end
 
   add_index "users", ["remember_token"], :name => "index_users_on_remember_token"

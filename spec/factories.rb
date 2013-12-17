@@ -16,5 +16,9 @@ FactoryGirl.define do
   f.sequence(:interests) { |n| "food" }
   f.sequence(:password) { |n| "test123" }
   f.sequence(:password_confirmation) { |n| "test123" }
+
+  factory :chef do
+    chef true
+  end
  end
 end

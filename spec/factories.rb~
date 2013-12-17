@@ -7,7 +7,8 @@
 #    f.password_confirmation "foobar"
 #  end
 #end
-#
+
+#use the code below, or else factory girl won't create unique usernames as it should
 FactoryGirl.define do
   factory :user do |f|
   f.sequence(:name) { |n| "test#{n}" }
