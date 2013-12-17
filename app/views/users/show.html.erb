@@ -5,7 +5,8 @@
 
 <b>Name: </b><%= @user.name %><br>
 <b>Interests: </b><%= @user.interests %><br>
-<b><%= @user.username %>'s Recipes: </b>
+<b><%= @user.username %>'s Recipes: </br>
+<b>Chef?: </b><%= @user.chef %><br>
 
 <p><HR WIDTH="50%" align="left" SIZE="3" NOSHADE><p>
 <% @user.recipes.each do |recipe| %>

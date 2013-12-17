@@ -16,8 +16,20 @@ describe User do
   it { should respond_to(:reverse_relationships) }
   it { should respond_to(:followers) }
 
-  it { should be_valid }
+  it { should respond_to(:chef) }
 
+
+  it { should be_valid }
+  it { should_not be_chef }
+
+  describe "with chef attribute set to 'true'" do
+    before do
+      @user.save!
+      @user.toggle!(:chef)
+    end
+
+    it { should be_chef }
+  end
   describe "when username is not present" do
 
     before { @user.username = " " }

@@ -8,7 +8,7 @@
 
 #RUN: bundle exec rake db:seed
 
-users = [{:username => 'MBrugh', :name => 'Michael Brughelli', :password => 'mibr'}, {:username => 'SFlynn', :name => 'Sierra Flynn', :password => 'SFly'}, {:username => 'PMahap', :name => 'Pattiya Mahapasuthanon', :password => 'PMah'}, {:username => 'ASchwa', :name => 'Arnold Schwarzenegger', :password => 'ASch'}, {:username => 'SStall', :name => 'Silvester Stallone', :password => 'SSta'}, {:username => 'BWilli', :name => 'Bruce Willis', :password => 'BWil'}, {:username => 'JHetfi', :name => 'James Hetfield', :password => 'JHet'}, {:username => 'LUlric' , :name => 'Lars Ulrich', :password => 'LUlr'}, {:username => 'KHamme', :name => 'Kirk Hammet', :password => 'KHam'},{:username => 'CBurto', :name => 'Cliff Burton', :password => 'CBur'}]
+users = [{:username => 'MBrugh', :name => 'Michael Brughelli', :password => 'mibr', :chef => true}, {:username => 'SFlynn', :name => 'Sierra Flynn', :password => 'SFly'}, {:username => 'PMahap', :name => 'Pattiya Mahapasuthanon', :password => 'PMah'}, {:username => 'ASchwa', :name => 'Arnold Schwarzenegger', :password => 'ASch'}, {:username => 'SStall', :name => 'Silvester Stallone', :password => 'SSta'}, {:username => 'BWilli', :name => 'Bruce Willis', :password => 'BWil'}, {:username => 'JHetfi', :name => 'James Hetfield', :password => 'JHet'}, {:username => 'LUlric' , :name => 'Lars Ulrich', :password => 'LUlr'}, {:username => 'KHamme', :name => 'Kirk Hammet', :password => 'KHam'},{:username => 'CBurto', :name => 'Cliff Burton', :password => 'CBur'}]
 
 users.each do |user|
   User.create!(user)
