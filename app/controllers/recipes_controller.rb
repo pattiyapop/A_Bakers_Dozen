@@ -18,6 +18,24 @@ class RecipesController < ApplicationController
     end
   end
 
+  # GET /recipes/followed_recipes
+  # GET /recipes/followed_recipes.json
+  def followed_recipes
+    #if :search_query
+    #  @recipes = Recipe.search(params[:search_query])
+    #  @recipes = @recipes.sort!{ |x, y| x["created_at"] <=> y["created_at"] }.reverse
+    #else     
+    if signed_in?
+      current_user.followers.each do |following|
+        @recipes = Recipe.find(:all, :user_id => following, :order => 'recipes.created_at').reverse
+      end
+    end
+    respond_to do |format|
+      format.html # index.html.erb
+      format.json { render json: @recipes }
+    end
+  end
+
   # GET /recipes/1
   # GET /recipes/1.json
   def show

@@ -74,3 +74,8 @@ kill server
 populate db with comments and ratings
 restart server
 test @recipecomments
+
+static pages for following recipes?
+match '/followed_recipes' => 'recipes#followed_recipes' in config/routes
+
+
