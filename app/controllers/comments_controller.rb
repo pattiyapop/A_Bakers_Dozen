@@ -95,8 +95,16 @@ class CommentsController < ApplicationController
       params.require(:comment).permit(:content)
     end
 
+    def signed_in_user
+      unless signed_in?
+        store_location
+        redirect_to signin_url, notice: "Please sign in."
+      end
+    end
+
     def correct_user
-      @comment = current_user.comments.find_by(id: params[:id])
-      redirect_to root_url if @comment.nil?
+      @comment = Comment.find(params[:id])
+      @user = User.find(@comment.user_id)
+      redirect_to(recipes_path) unless current_user?(@user)
     end
 end

@@ -1,5 +1,3 @@
-<p id="notice"><%= notice %></p>
-
 <h1><%= @recipe.name %></h1>
 <%= image_tag(@recipe.picture, :size => "250x250", :hspace => '15px', :vspace => '15px', :align => "left") %>
 
@@ -7,6 +5,15 @@
   <% if @recipe.user != nil %>
    Submitted by <%= link_to @recipe.user.name, @recipe.user %><br>
   <% end %>
+</p>
+
+<p>
+Average Rating: 
+    <% if @recipe.comments.any? %>
+      <%= @recipe.average_rating %>
+    <% else %>
+      N/A
+    <% end %>
 </p>
 
 <p>

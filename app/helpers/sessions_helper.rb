@@ -42,4 +42,14 @@ module SessionsHelper
       redirect_to signin_url, notice: "Please sign in."
     end
   end
+
+#friendly forwarding ch 9.3
+  def redirect_back_or(default)
+    redirect_to(session[:return_to] || default)
+    session.delete(:return_to)
+  end
+
+  def store_location
+    session[:return_to] = request.url if request.get?
+  end
 end

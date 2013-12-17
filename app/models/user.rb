@@ -6,6 +6,20 @@ class User < ActiveRecord::Base
 #      @name = attributes[:name]
 #      @password = attributes[:password]
 #    end
+
+#def initialize(user)
+#  @picture = "/assets/defaultprofile.png"
+#end
+
+#def image
+#  @user = User.find()
+#  if @user.picture.empty?
+#    "/assets/defaultprofile.png"
+#  else
+#    @user.picture
+#  end
+#end
+
 #relationships:
   #destroys comments if user is destroyed:
   has_many :comments, dependent: :destroy 

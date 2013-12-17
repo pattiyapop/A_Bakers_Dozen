@@ -67,3 +67,10 @@ end
 -take out profile image
 
 -11.2 now
+
+
+
+kill server
+populate db with comments and ratings
+restart server
+test @recipecomments

@@ -1,5 +1,6 @@
 class RecipesController < ApplicationController
-  before_filter :correct_user,   only: :destroy
+  before_filter :signed_in_user, only: [:create, :update, :edit, :destroy]
+  before_filter :correct_user,   only: [:update, :edit, :destroy]
 
   # GET /recipes
   # GET /recipes.json
@@ -26,6 +27,7 @@ class RecipesController < ApplicationController
     @date = @recipe.created_at.strftime("%m/%d/%Y")
     #find all comments associated with recipe
     @comments = @recipe.comments.paginate(page: params[:page])
+    debugger
     #@comments = Comment.find(:all, :recipe_id => @recipe.id)
     #@comments = @recipe.comments.paginate(page: params[:page])
     #    Micropost.where("user_id = ?", id)
@@ -61,8 +63,8 @@ class RecipesController < ApplicationController
 
     respond_to do |format|
       if @recipe.save
-        format.html { redirect_to recipes_path, notice: 'Recipe was successfully created.' }
-        format.json { render json: recipes_path, status: :created, location: @recipe }
+        format.html { redirect_to @recipe, notice: 'Recipe was successfully created.' }
+        format.json { render json: @recipe, status: :created, location: @recipe }
       else
         format.html { render action: "new" }
         format.json { render json: @recipe.errors, status: :unprocessable_entity }
@@ -99,8 +101,20 @@ class RecipesController < ApplicationController
   end
 
   private
+    #def correct_user
+    #  @recipe = current_user.recipes.find_by(id: params[:id])
+    #  redirect_to root_url if @recipe.nil?
+    #end
+    def signed_in_user
+      unless signed_in?
+        store_location
+        redirect_to signin_url, notice: "Please sign in."
+      end
+    end
+
     def correct_user
-      @recipe = current_user.recipes.find_by(id: params[:id])
-      redirect_to root_url if @recipe.nil?
+      @recipe = Recipe.find(params[:id])
+      @user = User.find(@recipe.user_id)
+      redirect_to(recipes_path) unless current_user?(@user)
     end
 end

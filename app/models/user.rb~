@@ -6,6 +6,20 @@ class User < ActiveRecord::Base
 #      @name = attributes[:name]
 #      @password = attributes[:password]
 #    end
+
+#def initialize
+#  @picture = "/assets/defaultprofile.png"
+#end
+
+#def image
+#  @user = User.find()
+#  if @user.picture.empty?
+#    "/assets/defaultprofile.png"
+#  else
+#    @user.picture
+#  end
+#end
+
 #relationships:
   #destroys comments if user is destroyed:
   has_many :comments, dependent: :destroy 
@@ -56,7 +70,7 @@ class User < ActiveRecord::Base
   end
 
   def unfollow!(other_user)
-    relationships.find_by(followed_id: other_user.id).destroy!
+    relationships.find_by_followed_id(other_user.id).destroy!
   end
   ############################################################
   private
