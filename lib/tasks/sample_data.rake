@@ -23,34 +23,43 @@ def make_users
    #                    password_confirmation: "foo123")
   users = User.all
   users.each do |n|
-    #name = "name#{n}"
     #name = Faker::Name.name
     username = "username#{n}"
+    name = "name#{n}"
     password = "password"
     password_confirmation = "password"
     picture = "picture"
-    interest = "interest"
+    interests = "interests"
     User.create!(username: username,
+  		 name: name,
 		 password: password,
                  password_confirmation: password,
 		 picture: picture,
-		 interest: interest)
+		 interests: interests)
     end
 end 
 
 def make_comments
   recipes = Recipe.all(limit: 6)
   recipes.each do |recipe|
-    content = Faker::Lorem.sentence(5)
-    recipes.comments.each { |recipe| recipe.comments.create!(content: content, user_id: user.id, rating: rating) }
+    content = "#{recipe.name} is wonderful!"
+    user_id = "1"
+    rating = "4"
+    #content = Faker::Lorem.sentence(5)
+    recipe.comments.create!(content: content, user_id: user_id, rating: rating)
   end
 end
 
 def make_recipes
   users = User.all(limit: 10)
-  50.times do
-    content = Faker::Lorem.sentence(5)
-    users.recipes.each { |user| user.recipes.create!(name: name, picture: picture, description: description, ingredients: ingredients, 		instructions: instructions, user_id: user_id) }
+  users.each do |user|
+    name = "name#{user}"
+    picture = "picture"
+    description = "description"
+    ingredients = "ingredients"
+    instructions = "instructions"
+    user_id = "#{user}"
+    users.recipes.create!(name: name, picture: picture, description: description, ingredients: ingredients, instructions: instructions, 	user_id: user_id)
   end
 end
 
