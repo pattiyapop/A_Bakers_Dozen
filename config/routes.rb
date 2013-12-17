@@ -25,6 +25,8 @@ ABakersDozen::Application.routes.draw do
   match '/signin',  to: 'sessions#new',         via: 'get'
   match '/signout', to: 'sessions#destroy',     via: 'delete'
 
+  resources :users, only: [:new, :create, :destroy]
+  resources :relationships, only: [:create, :destroy]
   #comments don't need a 'new' or 'edit' method:
   resources :comments, only: [:create, :destroy]
 end
