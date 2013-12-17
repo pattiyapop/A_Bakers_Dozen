@@ -1,9 +1,9 @@
 namespace :db do
   desc "Fill database with sample data"
   task populate: :environment do
-    make_users
-    make_comments
-    make_recipes
+    #make_users
+    #make_comments
+    #make_recipes
     make_relationships
     users = User.all(limit: 6)
     recipes = Recipe.all(limit: 3)
@@ -21,11 +21,12 @@ def make_users
    #user= User.create!(name: "Tom",
    #                    password: "foo123",
    #                    password_confirmation: "foo123")
-  users = User.all
-  users.each do |n|
+  n = 0
+  while (n < 10) do
     #name = Faker::Name.name
     username = "username#{n}"
-    name = "name#{n}"
+    name = "name"+n.to_s
+    #debugger
     password = "password"
     password_confirmation = "password"
     picture = "picture"
@@ -36,6 +37,7 @@ def make_users
                  password_confirmation: password,
 		 picture: picture,
 		 interests: interests)
+    n = n+1
     end
 end 
 
@@ -58,8 +60,8 @@ def make_recipes
     description = "description"
     ingredients = "ingredients"
     instructions = "instructions"
-    user_id = "#{user}"
-    users.recipes.create!(name: name, picture: picture, description: description, ingredients: ingredients, instructions: instructions, 	user_id: user_id)
+    user_id = user.id
+    user.recipes.create!(name: name, picture: picture, description: description, ingredients: ingredients, instructions: instructions, 	user_id: user_id)
   end
 end
 
