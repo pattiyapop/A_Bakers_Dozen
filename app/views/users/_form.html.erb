@@ -29,6 +29,9 @@
     <%= f.label :password_confirmation, "Confirmation" %>
     <%= f.password_field :password_confirmation %>
 
+    <%= f.label :chef, "Are you a Chef? (check box if yes)" %>
+    <%= f.check_box :chef %>
+
   <div class="actions">
     <%= f.submit "Create my account", class: "btn btn-large btn-primary"  %>
   </div>

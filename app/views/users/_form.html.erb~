@@ -21,13 +21,16 @@
     <%= f.text_field :picture %>
 
     <%= f.label :interests %>
-    <%= f.text_area :interests %>
+    <%= f.text_area :interests, :rows => 3 %>
 
     <%= f.label :password %>
     <%= f.password_field :password %>
 
     <%= f.label :password_confirmation, "Confirmation" %>
     <%= f.password_field :password_confirmation %>
+
+    <%= f.label :chef, "Are you a Chef? (change to 'true' if yes)" %>
+    <%= f.text_field :chef %>
 
   <div class="actions">
     <%= f.submit "Create my account", class: "btn btn-large btn-primary"  %>
