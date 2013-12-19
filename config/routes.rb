@@ -26,7 +26,7 @@ ABakersDozen::Application.routes.draw do
   #signin/signout:
   resources :sessions, only: [:new, :create, :destroy]
   match '/signin',  to: 'sessions#new',         via: 'get'
-  match '/signout', to: 'sessions#destroy',     via: 'delete'
+  match '/signout', to: 'sessions#destroy'#,     via: 'delete' #commented out to fix heroku
 
   resources :users, only: [:new, :create, :destroy]
   resources :relationships, only: [:create, :destroy]
