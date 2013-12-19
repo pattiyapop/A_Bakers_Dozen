@@ -41,6 +41,7 @@ class RecipesController < ApplicationController
   def show
     @recipe = Recipe.find(params[:id])
     @owner = @recipe.user
+    #debugger
     @ingredients = @recipe.ingredients.split("\n")
     @instructions = @recipe.instructions.split("\n")
     @date = @recipe.created_at.strftime("%m/%d/%Y")
@@ -48,7 +49,7 @@ class RecipesController < ApplicationController
     @comments = @recipe.comments.paginate(page: params[:page])
     @chefcertified = false
     @comments.each do |comment|
-      if (comment.rating == 4 && comment.user_id.chef)
+      if (comment.rating == 4 && comment.user.chef)
          @chefcertified = true
       end
     end

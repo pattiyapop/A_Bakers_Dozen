@@ -27,6 +27,7 @@ module NavigationHelpers
     when /^the "(.*?)" recipe page$/i then recipe_path(Recipe.find_by_name($1))
     when /^the sign-up page again$/ then '/users' #alternate
     when /^the following page$/ then '/users/1/following'
+    when /^the edit recipe page$/ then '/recipes/1/edit'
 
     # Add more mappings here.
     # Here is an example that pulls values out of the Regexp:

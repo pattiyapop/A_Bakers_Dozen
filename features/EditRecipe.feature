@@ -17,37 +17,41 @@ Background: recipe has been added to the database
   Then I should be on the "choc" recipe page
 
 Scenario: Change Recipe Name 
+  And I should see "Edit"
+  When I follow "Edit"
+  Then I should be on the edit recipe page
   And I fill in "Name" with "mint"
-  And I press "Update Information"
-  Then I should be on my recipe page
-  And I should see "Your recipe name has been updated."
+  And I press "Update Recipe"
+  Then I should be on the "mint" recipe page
 
 Scenario: Change Recipe picture
-  When I fill in "Recipe Picture" with "newimage.jpg"
-  And I press "Update Information"
-  Then I should be on my recipe page
-  And I should see "newimage.jpg"
+  And I should see "Edit"
+  When I follow "Edit"
+  Then I should be on the edit recipe page
+  And I fill in "Picture" with "newimage.jpg"
+  And I press "Update"
+  Then I should be on the "choc" recipe page
 
 Scenario: Edit description
-  When I fill in "Descriptions" with "Warm snack"
-  And I press "Update Information"
-  Then I should be on my recipe page
-  And I should see "Warm snack"
-
-Scenario: Change overall rating
-  When I fill in "Rating" with "4"
-  And I press "Update Information"
-  Then I should be on my recipe page
-  And I should see "Four Stars rating"
+  And I should see "Edit"
+  When I follow "Edit"
+  Then I should be on the edit recipe page
+  And I fill in "Description" with "Warm snack"
+  And I press "Update"
+  Then I should be on the "choc" recipe page
 
 Scenario: Edit ingredients
- When I fill in "Ingredient Lists" with "sugar"
-  And I press "Update Information"
-  Then I should be on my recipe page
-  And I should see "sugar"
+  And I should see "Edit"
+  When I follow "Edit"
+  Then I should be on the edit recipe page
+  And I fill in "Ingredients" with "sugar"
+  And I press "Update"
+  Then I should be on the "choc" recipe page
 
 Scenario: Edit instruction
- When I fill in "Instruction" with "1.start"
-  And I press "Update Information"
-  Then I should be on my recipe page
-  And I should see "1.start"
+  And I should see "Edit"
+  When I follow "Edit"
+  Then I should be on the edit recipe page
+  When I fill in "Instructions" with "1.start"
+  And I press "Update"
+  Then I should be on the "choc" recipe page
