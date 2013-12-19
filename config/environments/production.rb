@@ -9,8 +9,8 @@ ABakersDozen::Application.configure do
   config.cache_classes = true
 
   # Full error reports are disabled and caching is turned on
-  config.consider_all_requests_local       = true #false #change to true to debug
-  config.action_controller.perform_caching = false #true #change to false to debug
+  config.consider_all_requests_local       = false #change to true to debug
+  config.action_controller.perform_caching = true #change to false to debug
 
   # Disable Rails's static asset server (Apache or nginx will already do this)
   config.serve_static_assets = false
@@ -22,7 +22,7 @@ ABakersDozen::Application.configure do
   config.assets.compile = false
 
   # Generate digests for assets URLs
-  config.assets.digest = false #set to false
+  config.assets.digest = false #set to false to get app to work
 
   # Defaults to Rails.root.join("public/assets")
   # config.assets.manifest = YOUR_PATH
