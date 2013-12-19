@@ -4,17 +4,19 @@
   <aside class="span4">
 
 <%= image_tag(@user.picture, :size => "250x250", :hspace => '15px', :vspace => '15px', :align => "left") %>
+    <% if @user.chef %>
+      <%= image_tag('chefcertified.png',:hspace => '200px', :vspace => '2px', :align => "right") %>
+    <% end %>
 
 <p>
 
 <b>Name: </b><%= @user.name %><br>
-<b>Chef?: </b><%= @user.chef %><br>
 <b>Interests: </b><%= @user.interests %><br>
 <b><%= @user.username %>'s Recipes: </b></br>
 
 <p><HR WIDTH="50%" align="left" SIZE="3" NOSHADE><p>
 <% @user.recipes.each do |recipe| %>
-   <%= image_tag(recipe.picture, :size => "130x130", :hspace => '15px', :vspace => '5px', :align => "left") %>
+   <%= image_tag(recipe.picture, :size => "100x100", :hspace => '15px', :vspace => '5px', :align => "left") %>
    <b><%= link_to recipe.name, recipe %></b><br>
    Submitted on <%= recipe.created_at.strftime("%m/%d/%Y") %><br><br>
    <b>Description:</b><br>
