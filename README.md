@@ -8,8 +8,15 @@ Pattiya Mahapasuthanon <br/>
 New heroku URL: https://stark-wave-3734.herokuapp.com/recipes
 old/alt HEROKU URL : http://glacial-anchorage-5292.herokuapp.com/
 
+Pivotal Tracker: https://www.pivotaltracker.com/s/projects/956226
 
+Github: https://github.com/sierraflynn/A_Bakers_Dozen
 
+Resources:
+Michael Hartl's rails tutorial and code:
+http://ruby.railstutorial.org/
+
+Recipes from various websites
 
 
 

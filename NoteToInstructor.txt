@@ -1,0 +1,11 @@
+Note to Instructor: Deviations from Project Proposal
+
+There were some minor things we didn't include, such as a user signing up with his city. We thought this was irrelevant. Cooking specialty was changed to Interests. 
+
+The search works in development and testing, but for some reason is case sensitive on Heroku. (so searching for Apple would work, but not apple).
+
+We didn't include a complicated search query form since our recipes model doesn't have that many attributes to search by. If we had more time on this project, we would have implemented a way to search by tags, like #dinner, #lowcal, #asian, etc.
+
+Overall, we were able to successfuly implement all the main features and models we were hoping!
+
+
