@@ -14,7 +14,7 @@ Background: recipe has been added to the database
   And I am logged in as "test" with password "test123"
   And I am on the recipes page
   When I follow "choc"
-  Then I should be on the edit recipe page
+  Then I should be on the "choc" recipe page
 
 Scenario: Change Recipe Name 
   And I fill in "Name" with "mint"

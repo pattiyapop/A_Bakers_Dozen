@@ -9,7 +9,7 @@ Background: user has been added to the database
 
   And I am on my profile page
 
-Scenario: User follows friends
+Scenario: User follows another users
   Given I am logged in as "test" with password "test123"
   Then I should see "Follow"
   When I follow "Follow"
