@@ -30,8 +30,8 @@ describe User do
 
     it { should be_chef }
   end
-  describe "when username is not present" do
 
+  describe "when username is not present" do
     before { @user.username = " " }
     it { should_not be_valid }
   end
@@ -124,6 +124,5 @@ describe User do
         end
       end
     end
-  end
 
 end

@@ -39,9 +39,9 @@ describe "Authentication" do
           before { delete relationship_path(1) }
           specify { expect(response).to redirect_to(signin_path) }
         end
-
       end
 
       end
     end
   end
+end

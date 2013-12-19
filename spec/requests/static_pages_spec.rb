@@ -61,6 +61,7 @@ describe "Static pages" do
         visit users_path
         expect(page).to have_title("A Baker's Dozen")
       end
+     end
 
      #LOG-IN PAGE
      describe "Log-in page" do
