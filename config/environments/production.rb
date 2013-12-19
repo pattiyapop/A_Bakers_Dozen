@@ -9,8 +9,8 @@ ABakersDozen::Application.configure do
   config.cache_classes = true
 
   # Full error reports are disabled and caching is turned on
-  config.consider_all_requests_local       = false #change to true to debug
-  config.action_controller.perform_caching = true #change to false to debug
+  config.consider_all_requests_local       = true #false #change to true to debug
+  config.action_controller.perform_caching = false #true #change to false to debug
 
   # Disable Rails's static asset server (Apache or nginx will already do this)
   config.serve_static_assets = false
