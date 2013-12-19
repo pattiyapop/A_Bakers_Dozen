@@ -35,7 +35,7 @@ describe UsersController do
     end
   end
 
-<<<<<<< HEAD
+
   describe "GET edit" do
     it "assigns the requested user as @user" do
       user = User.create! valid_attributes
@@ -44,8 +44,7 @@ describe UsersController do
     end
   end
 
-=======
->>>>>>> a51572d745f1f4cee6c1bb70a3c3c2e2a8cbfd44
+
   describe "POST create" do
     describe "with valid params" do
       it "creates a new User" do
@@ -78,7 +77,6 @@ describe UsersController do
     end
   end
 
-<<<<<<< HEAD
   describe "PUT update" do
     describe "with valid params" do
 
@@ -113,20 +111,20 @@ describe UsersController do
         delete :destroy, {:id => user.to_param}, valid_session
       }.to change(User, :count).by(0)
     end
-=======
+
   describe "DELETE destroy" do
->>>>>>> a51572d745f1f4cee6c1bb70a3c3c2e2a8cbfd44
+
 
     it "redirects to the sign in page" do
       user = User.create! valid_attributes
-<<<<<<< HEAD
+
       delete :destroy, {:id => user.to_param}, valid_session
       response.should redirect_to(signin_url)
-=======
+
       delete :destroy, {:id => user.to_param}#, valid_session
       response.should redirect_to(signin_path)
->>>>>>> a51572d745f1f4cee6c1bb70a3c3c2e2a8cbfd44
-    end
-  end
 
+    end
+end
+end
 end
