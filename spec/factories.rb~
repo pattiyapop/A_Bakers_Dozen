@@ -16,5 +16,24 @@ FactoryGirl.define do
   f.sequence(:interests) { |n| "food" }
   f.sequence(:password) { |n| "test123" }
   f.sequence(:password_confirmation) { |n| "test123" }
+
+  factory :chef do
+    chef true
+  end
  end
+  
+  factory :recipe do |f|
+  f.sequence(:name) { |n| "test#{n}" }
+  f.sequence(:description) { |d| "test#{d}" }
+  f.sequence(:ingredients) { |n| "apple" }
+  f.sequence(:instructions) { |n| "cook" }
+  end
 end
+
+  factory :recipe do |f|
+  f.sequence(:name) { |n| "test#{n}" }
+  f.sequence(:description) { |d| "test#{d}" }
+  f.sequence(:ingredients) { |n| "apple" }
+  f.sequence(:instructions) { |n| "cook" }
+
+  

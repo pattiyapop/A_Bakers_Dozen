@@ -103,21 +103,32 @@ describe User do
     end
   end
    
+  describe "recipe associations" do
+    before { @user.save }
+    let!(:older_recipes) do
+      FactoryGirl.create(:recipe, user: @user, created_at: 1.day.ago)
+    end
+    let!(:newer_recipes) do
+       FactoryGirl.create(:recipe, user: @user, created_at: 1.hour.ago)
+    end
     #feed
     describe "status" do
-      let(:unfollowed_post) do
+      let(:unfollowed_recipes) do
         FactoryGirl.create(:recipe, user: FactoryGirl.create(:user))
       end
       let(:followed_user) { FactoryGirl.create(:user) }
 
       before do
+        @user.save!
         @user.follow!(followed_user)
         3.times { followed_user.recipes.create!(name: "Lorem ipsum", ingredients: "..", instructions: "..", picture: "..") }
       end
-
-      its(:feed) { should include(newer_recipes) }
-      its(:feed) { should include(older_recipes) }
-      its(:feed) { should_not include(unfollowed_recipes) }
+    
+    its(:feed) do
+       should include(newer_recipes)
+       should include(older_recipes)
+       should_not include(unfollowed_recipes)
+    end
       its(:feed) do
         followed_user.recipes.each do |recipe|
           should include(recipe)
@@ -125,4 +136,5 @@ describe User do
       end
     end
 
+end
 end

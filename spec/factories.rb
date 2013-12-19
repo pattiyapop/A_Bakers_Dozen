@@ -21,4 +21,11 @@ FactoryGirl.define do
     chef true
   end
  end
+  
+  factory :recipe do |f|
+  f.sequence(:name) { |n| "test#{n}" }
+  f.sequence(:description) { |d| "test#{d}" }
+  f.sequence(:ingredients) { |n| "apple" }
+  f.sequence(:instructions) { |n| "cook" }
+  end
 end
