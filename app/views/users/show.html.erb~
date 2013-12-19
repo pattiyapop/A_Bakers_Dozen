@@ -4,11 +4,13 @@
   <aside class="span4">
 
 <%= image_tag(@user.picture, :size => "250x250", :hspace => '15px', :vspace => '15px', :align => "left") %>
+    <% if @user.chef %>
+      <%= image_tag('chefcertified.png',:hspace => '2px', :vspace => '2px', :align => "right") %>
+    <% end %>
 
 <p>
 
 <b>Name: </b><%= @user.name %><br>
-<b>Chef?: </b><%= @user.chef %><br>
 <b>Interests: </b><%= @user.interests %><br>
 <b><%= @user.username %>'s Recipes: </b></br>
 
@@ -35,7 +37,7 @@
   </div>
 </div>
 
-
+<p>   <HR WIDTH="30%" align="left" SIZE="1" NOSHADE><p>
 <% if @user == current_user %>
   <%= link_to 'Edit my information', edit_user_path(@user) %>
 <% end %>
