@@ -7,7 +7,9 @@
 <HR WIDTH="70%" align="left" SIZE="3" NOSHADE><br>
 
 <% @recipes.each do |recipe| %>
-   <%= image_tag(recipe.picture, :size => "130x130", :hspace => '15px', :vspace => '5px', :align => "left") %>
+   <% if recipe.picture != nil %>
+     <%= image_tag(recipe.picture, :size => "130x130", :hspace => '15px', :vspace => '5px', :align => "left") %>
+   <% end %>
    <b><%= link_to recipe.name, recipe %></b><br><br>
   <% if recipe.user != nil %>
    Submitted by <%= link_to recipe.user.name, recipe.user %><br>

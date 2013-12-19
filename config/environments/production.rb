@@ -9,8 +9,8 @@ ABakersDozen::Application.configure do
   config.cache_classes = true
 
   # Full error reports are disabled and caching is turned on
-  config.consider_all_requests_local       = false
-  config.action_controller.perform_caching = true
+  config.consider_all_requests_local       = true #false #change to true to debug
+  config.action_controller.perform_caching = false #true #change to false to debug
 
   # Disable Rails's static asset server (Apache or nginx will already do this)
   config.serve_static_assets = false
@@ -35,7 +35,7 @@ ABakersDozen::Application.configure do
   # config.force_ssl = true
 
   # See everything in the log (default is :info)
-  # config.log_level = :debug
+   config.log_level = :debug #uncomment to debug
 
   # Use a different logger for distributed setups
   # config.logger = SyslogLogger.new
@@ -47,7 +47,7 @@ ABakersDozen::Application.configure do
   # config.action_controller.asset_host = "http://assets.example.com"
 
   # Precompile additional assets (application.js, application.css, and all non-JS/CSS are already added)
-  # config.assets.precompile += %w( search.js )
+   config.assets.precompile += %w( search.js )
 
   # Disable delivery errors, bad email addresses will be ignored
   # config.action_mailer.raise_delivery_errors = false
