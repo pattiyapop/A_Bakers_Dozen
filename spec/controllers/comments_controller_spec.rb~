@@ -32,7 +32,7 @@ describe CommentsController do
 
 
   let(:user) { FactoryGirl.create(:user) }
-  before { Session.sign_in user }
+  before { User.sign_in user }
 
   describe "GET new" do
     it "assigns a new comment as @comment" do
