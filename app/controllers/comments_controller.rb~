@@ -29,6 +29,10 @@ class CommentsController < ApplicationController
   # GET /comments/new.json
   def new
     @comment = Comment.new
+    if params[:recipe] != nil
+      @recipe = Recipe.find(params[:recipe].to_i).name
+    end
+
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @comment }
@@ -103,7 +107,8 @@ class CommentsController < ApplicationController
     end
 
     def correct_user
-      @user = User.find(params[:id])
+      @comment = Comment.find(params[:id])
+      @user = User.find(@comment.user_id)
       redirect_to(recipes_path) unless current_user?(@user)
     end
 end

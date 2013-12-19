@@ -29,6 +29,10 @@ class CommentsController < ApplicationController
   # GET /comments/new.json
   def new
     @comment = Comment.new
+    if params[:recipe] != nil
+      @recipe = Recipe.find(params[:recipe].to_i)
+    end
+
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @comment }

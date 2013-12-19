@@ -12,7 +12,6 @@
 <b>Interests: </b><%= @user.interests %><br>
 <b><%= @user.username %>'s Recipes: </b></br>
 
-
 <p><HR WIDTH="50%" align="left" SIZE="3" NOSHADE><p>
 <% @user.recipes.each do |recipe| %>
    <%= image_tag(recipe.picture, :size => "130x130", :hspace => '15px', :vspace => '5px', :align => "left") %>
@@ -38,6 +37,5 @@
 
 
 <% if @user == current_user %>
-  <%= link_to 'Edit my information', edit_user_path(@user) %> |
+  <%= link_to 'Edit my information', edit_user_path(@user) %>
 <% end %>
-<%= link_to 'Back', users_path %>

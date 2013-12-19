@@ -14,16 +14,14 @@
         - if signed_in?
           = link_to 'Profile', current_user
           |
-          = link_to 'Log-out', signout_path, :method => "delete"
+          = link_to 'Log-out', signout_path, :method => :delete
         - else
           = link_to 'Log-in', signin_path
     %nav 
       = link_to 'Home', recipes_path
       - if signed_in?
         |
-        = link_to 'Followed Recipes', recipes_path
-        |
-        = link_to 'My Friends', users_path
+        = link_to 'Followed Recipes', following_user_path(current_user)
       %right
         = form_tag recipes_path, :action => 'search', :method => :get do
           = text_field_tag :search_query, params[:search_query], :placeholder => "Search Recipes"
