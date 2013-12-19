@@ -8,7 +8,7 @@
 
 #RUN: bundle exec rake db:seed
 
-users = [{:username => 'MBrugh', :name => 'Michael Brughelli', :password => 'mibr', :chef => true}, {:username => 'SFlynn', :name => 'Sierra Flynn', :password => 'SFly'}, {:username => 'PMahap', :name => 'Pattiya Mahapasuthanon', :password => 'PMah'}, {:username => 'ASchwa', :name => 'Arnold Schwarzenegger', :password => 'ASch'}, {:username => 'SStall', :name => 'Silvester Stallone', :password => 'SSta'}, {:username => 'BWilli', :name => 'Bruce Willis', :password => 'BWil'}, {:username => 'JHetfi', :name => 'James Hetfield', :password => 'JHet'}, {:username => 'LUlric' , :name => 'Lars Ulrich', :password => 'LUlr'}, {:username => 'KHamme', :name => 'Kirk Hammet', :password => 'KHam'},{:username => 'CBurto', :name => 'Cliff Burton', :password => 'CBur'}]
+users = [{:username => 'MBrugh', :name => 'Michael Brughelli', :password => 'mibr', :chef => true}, {:username => 'SFlynn', :name => 'Sierra Flynn', :password => 'SFly', :chef => true}, {:username => 'PMahap', :name => 'Pattiya Mahapasuthanon', :password => 'PMah', :chef => true}, {:username => 'ASchwa', :name => 'Arnold Schwarzenegger', :password => 'ASch'}, {:username => 'SStall', :name => 'Silvester Stallone', :password => 'SSta'}, {:username => 'BWilli', :name => 'Bruce Willis', :password => 'BWil'}, {:username => 'JHetfi', :name => 'James Hetfield', :password => 'JHet'}, {:username => 'LUlric' , :name => 'Lars Ulrich', :password => 'LUlr'}, {:username => 'KHamme', :name => 'Kirk Hammet', :password => 'KHam'},{:username => 'CBurto', :name => 'Cliff Burton', :password => 'CBur'}]
 
 users.each do |user|
   User.create!(user)
@@ -92,7 +92,29 @@ Read more at: http://www.foodnetwork.com/recipes/food-network-kitchens/tofu-vege
 :user_id => 2
 }
 
-recipes = [applepie, chocmousse, stirfry]
+chickenskewer={
+:name => 'Suya (Nigerian Chicken Skewers)'
+:ingredients => '1 tablespoon garlic powder
+1 tablespoon ground ginger
+1 tablespoon paprika
+2 tablespoons cayenne powder
+1 tablespoon dried onion flakes
+2 tablespoons peanuts, finely minced
+1 lb boneless skinless chicken breast
+2 tablespoons peanut oil'
+:picture => 'http://img.food.com/img/recipes/45/54/02/large/picE00DIJ.jpg'
+:description => 'delicious Nigerian chicken skewers'
+:instructions => '1.Mix all the dry ingredients together.
+2.Slice the chicken into thin pieces. Sprinkle with the seasoning mix, and allow to sit for 5 minutes.
+3.Thread the chicken onto skewers and brush with the oil.
+4.Grill or broil for 3 minutes on each side, or until chicken is cooked through.
+5.Note: if using wooden skewers, soak them for at least half an hour before using to avoid burning!
+
+Read more: <a href="http://www.food.com/recipe/suya-nigerian-chicken-skewers-455402?oc=linkback">http://www.food.com/recipe/suya-nigerian-chicken-skewers-455402?oc=linkback</a>'
+:user_id => 5
+}
+
+recipes = [applepie, chocmousse, stirfry, chickenskewer]
 
 recipes.each do |recipe|
   Recipe.create!(recipe)

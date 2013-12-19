@@ -40,11 +40,21 @@ class RecipesController < ApplicationController
   # GET /recipes/1.json
   def show
     @recipe = Recipe.find(params[:id])
+    @owner = @recipe.user
     @ingredients = @recipe.ingredients.split("\n")
     @instructions = @recipe.instructions.split("\n")
     @date = @recipe.created_at.strftime("%m/%d/%Y")
     #find all comments associated with recipe
     @comments = @recipe.comments.paginate(page: params[:page])
+    @chefcertified = false
+    @comments.each do |comment|
+      if (comment.rating == 4 && comment.user.chef)
+         @chefcertified = true
+      end
+    end
+    if @owner.chef
+       @chefcertified = true
+    end
     #debugger
     #@comments = Comment.find(:all, :recipe_id => @recipe.id)
     #@comments = @recipe.comments.paginate(page: params[:page])

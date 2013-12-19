@@ -10,9 +10,12 @@
 <p>
 Average Rating: 
     <% if @recipe.comments.any? %>
-      <%= @recipe.average_rating(@recipe.comments) %>
+      <%= @recipe.average_rating %>
     <% else %>
       N/A
+    <% end %>
+    <% if @chefcertified %>
+      <%= image_tag('chefcertified.png',:hspace => '2px', :vspace => '2px', :align => "left") %>
     <% end %>
 </p>
 
@@ -21,7 +24,7 @@ Average Rating:
    <%= @recipe.description %>
 </p>
 
-<p>
+<p><br>
    <b>Ingredients:</b><br>
    <% @ingredients.each do |ingredient| %>
      <%= ingredient %><br>
