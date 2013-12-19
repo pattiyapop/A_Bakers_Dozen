@@ -61,9 +61,6 @@ describe RecipesController do
 
   end
 
-  describe "PUT update" do
-    describe "with valid params" do
-
       it "assigns the requested recipe as @recipe" do
         recipe = Recipe.create! valid_attributes
         put :update, {:id => recipe.to_param, :recipe => valid_attributes}, valid_session

@@ -30,9 +30,12 @@ describe CommentsController do
   # CommentsController. Be sure to keep this updated too.
   let(:valid_session) { {"signed_in_user" => "true", "correct_user" => "true", "current_user" => "1", "signed_in" => "true"} }
 
+<<<<<<< HEAD
+=======
 
   let(:user) { FactoryGirl.create(:user) }
   before { Session.sign_in user }
+>>>>>>> a51572d745f1f4cee6c1bb70a3c3c2e2a8cbfd44
 
   describe "GET new" do
     it "assigns a new comment as @comment" do
@@ -41,6 +44,8 @@ describe CommentsController do
     end
   end
 
+<<<<<<< HEAD
+=======
   describe "POST create" do
     describe "with valid params" do
       it "creates a new Comment" do
@@ -93,4 +98,5 @@ describe CommentsController do
     end
   end
 
+>>>>>>> a51572d745f1f4cee6c1bb70a3c3c2e2a8cbfd44
 end

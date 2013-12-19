@@ -35,6 +35,17 @@ describe UsersController do
     end
   end
 
+<<<<<<< HEAD
+  describe "GET edit" do
+    it "assigns the requested user as @user" do
+      user = User.create! valid_attributes
+      get :edit, {:id => user.to_param}, valid_session
+      assigns(:user).should eq(nil)
+    end
+  end
+
+=======
+>>>>>>> a51572d745f1f4cee6c1bb70a3c3c2e2a8cbfd44
   describe "POST create" do
     describe "with valid params" do
       it "creates a new User" do
@@ -47,11 +58,6 @@ describe UsersController do
         post :create, {:user => valid_attributes}, valid_session
         assigns(:user).should be_a(User)
         assigns(:user).should be_persisted
-      end
-
-      it "redirects to the created user" do
-        post :create, {:user => valid_attributes}, valid_session
-        response.should redirect_to(User.last)
       end
     end
 
@@ -72,12 +78,54 @@ describe UsersController do
     end
   end
 
+<<<<<<< HEAD
+  describe "PUT update" do
+    describe "with valid params" do
+
+      it "assigns the requested user as @user" do
+        user = User.create! valid_attributes
+        put :update, {:id => user.to_param, :user => valid_attributes}, valid_session
+        assigns(:user).should eq(nil)
+      end
+
+      it "redirects to the user" do
+        user = User.create! valid_attributes
+        put :update, {:id => user.to_param, :user => valid_attributes}, valid_session
+        response.should redirect_to(signin_url)
+      end
+    end
+
+    describe "with invalid params" do
+      it "assigns the user as @user" do
+        user = User.create! valid_attributes
+        # Trigger the behavior that occurs when invalid params are submitted
+        User.any_instance.stub(:save).and_return(false)
+        put :update, {:id => user.to_param, :user => { "username" => "invalid value" }}, valid_session
+        assigns(:user).should eq(nil)
+      end
+    end
+  end
+
   describe "DELETE destroy" do
+    it "destroys the requested user" do
+      user = User.create! valid_attributes
+      expect {
+        delete :destroy, {:id => user.to_param}, valid_session
+      }.to change(User, :count).by(0)
+    end
+=======
+  describe "DELETE destroy" do
+>>>>>>> a51572d745f1f4cee6c1bb70a3c3c2e2a8cbfd44
 
     it "redirects to the sign in page" do
       user = User.create! valid_attributes
+<<<<<<< HEAD
+      delete :destroy, {:id => user.to_param}, valid_session
+      response.should redirect_to(signin_url)
+=======
       delete :destroy, {:id => user.to_param}#, valid_session
       response.should redirect_to(signin_path)
+>>>>>>> a51572d745f1f4cee6c1bb70a3c3c2e2a8cbfd44
     end
   end
 
