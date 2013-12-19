@@ -16,7 +16,7 @@
 
 <p><HR WIDTH="50%" align="left" SIZE="3" NOSHADE><p>
 <% @user.recipes.each do |recipe| %>
-   <%= image_tag(recipe.picture, :size => "130x130", :hspace => '15px', :vspace => '5px', :align => "left") %>
+   <%= image_tag(recipe.picture, :size => "100x100", :hspace => '15px', :vspace => '5px', :align => "left") %>
    <b><%= link_to recipe.name, recipe %></b><br>
    Submitted on <%= recipe.created_at.strftime("%m/%d/%Y") %><br><br>
    <b>Description:</b><br>

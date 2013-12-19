@@ -5,7 +5,7 @@
 
 <%= image_tag(@user.picture, :size => "250x250", :hspace => '15px', :vspace => '15px', :align => "left") %>
     <% if @user.chef %>
-      <%= image_tag('chefcertified.png',:hspace => '2px', :vspace => '2px', :align => "right") %>
+      <%= image_tag('chefcertified.png',:hspace => '200px', :vspace => '2px', :align => "right") %>
     <% end %>
 
 <p>
